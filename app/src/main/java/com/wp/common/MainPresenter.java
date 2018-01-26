@@ -60,7 +60,7 @@ public class MainPresenter extends BasePresenter implements MainContract.Present
 
                     }
                 }));*/
-        /*ProgressManager.addListener("http://61.188.178.213/ZHFQWebService/version/zhfqu.apk", new DefaultProgressListener() {
+        /*ProgressManager.addListener("http://xx.xxx.xxx.xxx/xxx", new DefaultProgressListener() {
             @Override
             public void onStart(long totalLength) {
                 LogUtils.e("onStart " + totalLength);
