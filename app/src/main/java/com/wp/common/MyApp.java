@@ -8,7 +8,7 @@ import com.wp.commonlibrary.network.retrofit.RetrofitHelper;
  */
 
 public class MyApp extends CommonApplication {
-    private static final String BASE_URL = "http://182.150.20.24:10025/ZHFQWebService/";
+    private static final String BASE_URL = "http://xxx.xxx.xx.xx:xxxx/xxx/";
 
     @Override
     public void onCreate() {

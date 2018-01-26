@@ -78,7 +78,7 @@ public class MainPresenter extends BasePresenter implements MainContract.Present
         });
         RetrofitHelper.getDefault()
                 .getService(DownloadService.class)
-                .download("http://61.188.178.213/ZHFQWebService/version/zhfqu.apk")
+                .download("http://xx.xxx.xxx.xxx/xxx")
                 .map(new Function<ResponseBody, File>() {
                     @Override
                     public File apply(ResponseBody responseBody) throws Exception {
@@ -100,7 +100,7 @@ public class MainPresenter extends BasePresenter implements MainContract.Present
 
                     }
                 }));*/
-        String url = "http://61.188.178.200:8088/CreditLoanWeb/download/zhdy.apk";
+        String url = "http://xx.xxx.xxx.xxx/xxx";
         File file = new File(CommonApplication.context.getCacheDir(), System.currentTimeMillis() + ".apk");
         RetrofitDownloadService service = new RetrofitDownloadService();
         service.download(new DownloadFile(url, file, new ProgressListener() {
