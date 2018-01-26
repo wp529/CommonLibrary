@@ -1,0 +1,62 @@
+def supportVersion = "25.3.1"
+def retrofitVersion = "2.2.0"
+def daggerVersion = "2.7"
+def okHttpVersion = "3.9.1"
+def butterKnifeVersion = "8.8.1"
+def gsonVersion = "2.8.2"
+def rxJavaVersion = "2.1.8"
+def rxAndroidVersion = "2.0.1"
+def adapterGsonVersion = "2.0.2"
+def kprogressVersion = "1.0.2"
+def glideVersion = "3.7.0"
+
+project.ext {
+    android = [
+            compileSdkVersion: 25,
+            buildToolsVersion: "25.0.2",
+            applicationId    : "com.wp.common",
+            minSdkVersion    : 15,
+            targetSdkVersion : 25,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    dependencies = [
+            //android-support
+            "support-v4"           : "com.android.support:support-v4:${supportVersion}",
+            "appcompat-v7"         : "com.android.support:appcompat-v7:${supportVersion}",
+            "design"               : "com.android.support:design:${supportVersion}",
+            "recyclerview"         : "com.android.support:recyclerview-v7:${supportVersion}",
+            "cardview"             : "com.android.support:cardview-v7:${supportVersion}",
+
+            //rx
+            "rxAndroid"            : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            "rxJava"               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+
+            //OkHttp
+            "okHttp"               : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+
+            //retrofit
+            "retrofit"             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            "adapter-rxjava"       : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            "adapter-gson"         : "com.squareup.retrofit2:converter-gson:${adapterGsonVersion}",
+
+            //butterKnife
+            "butterKnife"          : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            "butterKnife-Processor": "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+
+            //gson
+            "gson"                 : "com.google.code.gson:gson:${gsonVersion}",
+
+            //dagger
+            "dagger"               : "com.google.dagger:dagger:${daggerVersion}",
+            "dagger-compiler"      : "com.google.dagger:dagger-compiler:${daggerVersion}",
+
+            //加载框
+            "progress"             : "com.kaopiz:kprogresshud:${kprogressVersion}",
+
+            //图片加载
+            "glide"                : "com.github.bumptech.glide:glide:${glideVersion}",
+            "glide-compiler"       : "com.github.bumptech.glide:compiler:${glideVersion}"
+    ]
+}
