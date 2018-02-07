@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.wp.commonlibrary.permission.PermissionCallBack;
 import com.wp.commonlibrary.permission.PermissionService;
+import com.wp.commonlibrary.utils.LogUtils;
 
 /**
  * Created by WangPing on 2018/2/5.
@@ -25,5 +26,11 @@ public class RxPermissionService implements PermissionService {
                         callBack.deniedNotAskAgain(per.name);
                     }
                 });
+    }
+
+    @Override
+    public boolean isGranted(Activity ac, String permission) {
+        RxPermissions permissions = new RxPermissions(ac);
+        return permissions.isGranted(permission);
     }
 }

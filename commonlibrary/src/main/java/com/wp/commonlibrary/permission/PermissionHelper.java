@@ -30,4 +30,8 @@ public class PermissionHelper {
     public void requestPermissions(Activity activity, PermissionCallBack callBack, String... permission) {
         service.requestPermissions(activity, callBack, permission);
     }
+
+    public boolean isGranted(Activity activity, String permission) {
+        return service.isGranted(activity, permission);
+    }
 }

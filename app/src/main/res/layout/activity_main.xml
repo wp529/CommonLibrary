@@ -11,33 +11,33 @@
         android:orientation="vertical">
 
         <Button
-            android:onClick="requestApi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="requestApi"
             android:text="请求接口" />
 
         <Button
-            android:onClick="downloadFile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="downloadFile"
             android:text="下载文件" />
 
         <Button
-            android:onClick="loadNetImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="loadNetImage"
             android:text="显示网络图片" />
 
         <Button
-            android:onClick="loadLocalImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="loadLocalImage"
             android:text="显示本地图片" />
 
         <Button
-            android:onClick="requestPermission"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="requestPermission"
             android:text="请求权限" />
 
         <RelativeLayout
@@ -52,7 +52,7 @@
             <com.wp.commonlibrary.views.ProgressImageView
                 android:id="@+id/iv_example"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="200dp" />
         </RelativeLayout>
     </LinearLayout>
     <!--<com.wp.commonlibrary.views.ProgressImageView

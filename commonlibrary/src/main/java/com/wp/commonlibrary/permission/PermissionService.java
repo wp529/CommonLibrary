@@ -8,4 +8,6 @@ import android.app.Activity;
 
 public interface PermissionService {
     void requestPermissions(Activity activity, PermissionCallBack callBack, String... permissions);
+
+    boolean isGranted(Activity activity, String permission);
 }

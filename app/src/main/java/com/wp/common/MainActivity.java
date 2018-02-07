@@ -16,10 +16,15 @@ import com.wp.commonlibrary.baseMVP.BaseActivity;
 import com.wp.commonlibrary.dialog.BoxDialog;
 import com.wp.commonlibrary.dialog.DialogHelper;
 import com.wp.commonlibrary.dialog.DialogOperateAdapter;
+import com.wp.commonlibrary.image.DownloadImage;
+import com.wp.commonlibrary.image.ImageHelper;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.ProgressListener;
+import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
+import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionCallBack;
+import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.text.TextWithColor;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.utils.SettingUtils;
@@ -49,7 +54,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
 
     //请求接口
     public void requestApi(View view) {
-        LogUtils.e("requestMovie");
         mPresenter.requestMovieData(10, 2);
     }
 
@@ -105,14 +109,39 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
 
     //加载网络图片
     public void loadNetImage(View view) {
+        tvExample.setVisibility(View.GONE);
+        ivExample.setVisibility(View.VISIBLE);
+        String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999" +
+                "_10000&sec=1516793144571&di=01beb0d58d63c328051647c96c7d3742" +
+                "&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F5" +
+                "8619c927133fd015f1656ea505cef48c20089ba.jpg";
+        ImageHelper.getDefault().loadImage(this, new DownloadImage.Builder()
+                .path(url)
+                .targetView(ivExample)
+                .memoryCache(false)
+                .diskCache(false)
+                .build());
     }
 
     //加载本地图片
     public void loadLocalImage(View view) {
+        //本地文件路径
+        NeedPermissionOperate.getDefault().buildSafeExternalStoragePath(this, "scene_photo.jpg", new MustGrantPermissionCallBack(this) {
+            @Override
+            public void granted(Context context, String result) {
+                ImageHelper.getDefault().loadImage(context, new DownloadImage.Builder().path(result).targetView(ivExample).build());
+            }
+        });
     }
 
     //请求权限
     public void requestPermission(View view) {
+        PermissionHelper.getDefault().requestPermissions(this, new MustGrantPermissionCallBack(this) {
+            @Override
+            public void granted(Context context, String result) {
+
+            }
+        }, Permission.cameraPermission());
     }
 
 

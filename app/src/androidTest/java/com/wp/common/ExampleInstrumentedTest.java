@@ -22,9 +22,5 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-
-
-        String s = FileTypeUtils.getFileType(appContext.getAssets().open("1.pdf"));
-        assertEquals("pdf", s);
     }
 }

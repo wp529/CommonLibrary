@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
+import com.wp.commonlibrary.ActivityManager;
 import com.wp.commonlibrary.R;
 import com.wp.commonlibrary.network.retrofit.ObservableManager;
 import com.wp.commonlibrary.utils.ReflectUtils;
@@ -34,6 +35,7 @@ public abstract class BaseActivity<T extends IPresenter> extends Activity implem
         findView();
         inject();
         mPresenter.attachView(this);
+        ActivityManager.getAppManager().addActivity(this);
     }
 
     protected abstract void findView();
@@ -55,6 +57,12 @@ public abstract class BaseActivity<T extends IPresenter> extends Activity implem
     protected void onStop() {
         super.onStop();
         mPresenter.detachView(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityManager.getAppManager().removeActivity(this);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
         RetrofitHelper.getDefault()
                 .getService(TestApiService.class)
                 .testApi(start, count)
-                .compose(ThreadTransformer.<String>io2main())
+                .compose(ThreadTransformer.io2main())
                 .subscribe(new DefaultObserver<>(mView, new DefaultResponseCallBack<String>() {
                     @Override
                     public void success(String result) {
