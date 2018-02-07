@@ -9,11 +9,12 @@ def rxAndroidVersion = "2.0.1"
 def adapterGsonVersion = "2.0.2"
 def kprogressVersion = "1.0.2"
 def glideVersion = "3.7.0"
+def rxPermissionVersion = "0.9.5"
 
 project.ext {
     android = [
             compileSdkVersion: 25,
-            buildToolsVersion: "25.0.2",
+            buildToolsVersion: "27.0.3",
             applicationId    : "com.wp.common",
             minSdkVersion    : 15,
             targetSdkVersion : 25,
@@ -28,11 +29,10 @@ project.ext {
             "design"               : "com.android.support:design:${supportVersion}",
             "recyclerview"         : "com.android.support:recyclerview-v7:${supportVersion}",
             "cardview"             : "com.android.support:cardview-v7:${supportVersion}",
-
             //rx
             "rxAndroid"            : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             "rxJava"               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-
+            "rxPermission"         : "com.tbruyelle.rxpermissions2:rxpermissions:${rxPermissionVersion}@aar",
             //OkHttp
             "okHttp"               : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
 

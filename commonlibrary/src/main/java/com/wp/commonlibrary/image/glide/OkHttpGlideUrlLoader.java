@@ -15,7 +15,7 @@ import okhttp3.OkHttpClient;
 /**
  * Created by WangPing on 2018/1/24.
  */
-public class OkHttpGlideUrlLoader implements ModelLoader<GlideUrl, InputStream> {
+class OkHttpGlideUrlLoader implements ModelLoader<GlideUrl, InputStream> {
 
     private OkHttpClient okHttpClient;
 

@@ -8,7 +8,5 @@ import android.content.Context;
  */
 
 public interface IImageService {
-    void loadLocalImage(Context context, DownloadImage image);
-
-    void loadNetImage(Context context, DownloadImage image);
+    void loadImage(Context context, DownloadImage image);
 }

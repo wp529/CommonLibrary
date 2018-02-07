@@ -1,13 +1,35 @@
 package com.wp.common;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.content.FileProvider;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.wp.common.dagger.DaggerActivityComponent;
+import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;
+import com.wp.commonlibrary.dialog.BoxDialog;
+import com.wp.commonlibrary.dialog.DialogHelper;
+import com.wp.commonlibrary.dialog.DialogOperateAdapter;
+import com.wp.commonlibrary.network.DownloadFile;
+import com.wp.commonlibrary.network.ProgressListener;
+import com.wp.commonlibrary.permission.Permission;
+import com.wp.commonlibrary.permission.PermissionCallBack;
+import com.wp.commonlibrary.text.TextWithColor;
+import com.wp.commonlibrary.utils.LogUtils;
+import com.wp.commonlibrary.utils.SettingUtils;
+import com.wp.commonlibrary.views.ProgressImageView;
 
-public class MainActivity extends BaseActivity<MainPresenter> {
-    private ImageView iv;
+import java.io.File;
+
+public class MainActivity extends BaseActivity<MainPresenter> implements PermissionCallBack, MainContract.View, ProgressListener {
+    private ProgressImageView ivExample;
+    private TextView tvExample;
 
     @Override
     protected int layoutId() {
@@ -16,7 +38,8 @@ public class MainActivity extends BaseActivity<MainPresenter> {
 
     @Override
     protected void findView() {
-        iv = (ImageView) findView(R.id.iv);
+        ivExample = (ProgressImageView) findView(R.id.iv_example);
+        tvExample = (TextView) findView(R.id.tv_example);
     }
 
     @Override
@@ -24,12 +47,114 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         DaggerActivityComponent.create().inject(this);
     }
 
+    //请求接口
+    public void requestApi(View view) {
+        LogUtils.e("requestMovie");
+        mPresenter.requestMovieData(10, 2);
+    }
+
+    @Override
+    public void requestMovieSuccess(String result) {
+        tvExample.setVisibility(View.VISIBLE);
+        tvExample.setText(result);
+        ivExample.setVisibility(View.GONE);
+    }
+
+
+    //下载文件
+    public void downloadFile(View view) {
+        File file = new File(CommonApplication.context.getCacheDir(), System.currentTimeMillis() + ".apk");
+        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, this);
+        mPresenter.downloadFile(downloadFile);
+    }
+
+    @Override
+    public void onStart(long totalLength) {
+        showLoading(true);
+        LogUtils.e("onStart " + totalLength);
+    }
+
+    @Override
+    public void onProgress(int progress) {
+        LogUtils.e("onProgress " + progress);
+    }
+
+    @Override
+    public void onEnd(String url) {
+        LogUtils.e("onEnd " + url);
+    }
+
+    @Override
+    public void downloadFileSuccess(File file) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri data;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            data = FileProvider.getUriForFile(CommonApplication.context, "com.wp.common.fileprovider", file);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else {
+            data = Uri.fromFile(file);
+        }
+        intent.setDataAndType(data, "application/vnd.android.package-archive");
+        CommonApplication.context.startActivity(intent);
+    }
+
+    @Override
+    public void downloadFileFail(Throwable exception) {
+        LogUtils.e(exception.getMessage());
+    }
+
+    //加载网络图片
+    public void loadNetImage(View view) {
+    }
+
+    //加载本地图片
+    public void loadLocalImage(View view) {
+    }
+
+    //请求权限
+    public void requestPermission(View view) {
+    }
+
+
     public void login(View view) {
         //请求接口
-        mPresenter.requestData();
-
+        //mPresenter.requestData();
         //加载图片 可带进度
-        /*String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516793144571&di=01beb0d58d63c328051647c96c7d3742&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F58619c927133fd015f1656ea505cef48c20089ba.jpg";
-        GlideHelper.getDefault().loadNetImage(this, new DownloadImage(url, iv));*/
+        //String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516793144571&di=01beb0d58d63c328051647c96c7d3742&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F58619c927133fd015f1656ea505cef48c20089ba.jpg";
+        /*String url = Environment.getExternalStorageDirectory() + File.separator + "scene_photo.jpg";
+        DownloadImage.Builder builder = new DownloadImage.Builder();
+        builder.path(url).targetView(iv)
+                .memoryCache(false)
+                .diskCache(false);
+        ImageHelper.getDefault().loadImage(this, builder.build());*/
+        //PermissionHelper.getDefault().requestPermissions(this, this, Permission.cameraPermission());
+    }
+
+    @Override
+    public void grant(String... permissions) {
+    }
+
+    @Override
+    public void denied(String... permissions) {
+    }
+
+    @Override
+    public void deniedNotAskAgain(String... permissions) {
+        DialogHelper.getDefault().showDialogBox(this, new BoxDialog.Builder()
+                .cancelable(true)
+                .cancelOutside(true)
+                .singleButton(true)
+                .title("提示")
+                .content(new TextWithColor("如果您不允许 ", Color.BLACK)
+                        , new TextWithColor(Permission.getPermissionDescription(permissions[0]), Color.RED)
+                        , new TextWithColor(" 您将无法使用", Color.BLACK))
+                .positiveText("去设置")
+                .negativeText("取消")
+                .listener(new DialogOperateAdapter() {
+                    @Override
+                    public void positive(Context context) {
+                        SettingUtils.permissionSetting((Activity) context);
+                    }
+                }));
     }
 }

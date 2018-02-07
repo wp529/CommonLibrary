@@ -75,6 +75,7 @@ public class ProgressResponseBody extends ResponseBody {
             if (listener != null && totalBytesRead == fullLength) {
                 listener.onEnd(url);
                 listener = null;
+                ProgressManager.removeListener(url);
             }
             currentProgress = progress;
             return bytesRead;

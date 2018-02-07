@@ -1,11 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.wp.common.MainActivity">
-    <ImageView
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:onClick="requestApi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请求接口" />
+
+        <Button
+            android:onClick="downloadFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="下载文件" />
+
+        <Button
+            android:onClick="loadNetImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显示网络图片" />
+
+        <Button
+            android:onClick="loadLocalImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显示本地图片" />
+
+        <Button
+            android:onClick="requestPermission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请求权限" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_example"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.wp.commonlibrary.views.ProgressImageView
+                android:id="@+id/iv_example"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+    <!--<com.wp.commonlibrary.views.ProgressImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="300dp" />
@@ -13,6 +63,6 @@
         android:text="login"
         android:onClick="login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" />-->
 
-</LinearLayout>
+</ScrollView>

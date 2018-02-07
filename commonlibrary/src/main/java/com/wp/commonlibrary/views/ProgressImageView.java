@@ -67,7 +67,7 @@ public class ProgressImageView extends android.support.v7.widget.AppCompatImageV
             canvas.drawCircle(mCenterX, mCenterY, mRadius, mPaint);
             // 画进度百分比
             mPaint.setStrokeWidth(0);
-            mPaint.setColor(Color.WHITE);
+            mPaint.setColor(Color.BLACK);
             mPaint.setTypeface(Typeface.MONOSPACE);
             mPaint.setTextAlign(Paint.Align.CENTER);
             String progressStr = mProgress + "%";

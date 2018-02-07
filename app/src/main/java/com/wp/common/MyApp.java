@@ -8,7 +8,7 @@ import com.wp.commonlibrary.network.retrofit.RetrofitHelper;
  */
 
 public class MyApp extends CommonApplication {
-    private static final String BASE_URL = "http://xxx.xxx.xx.xx:xxxx/xxx/";
+    private static final String BASE_URL = "http://api.douban.com/";
 
     @Override
     public void onCreate() {

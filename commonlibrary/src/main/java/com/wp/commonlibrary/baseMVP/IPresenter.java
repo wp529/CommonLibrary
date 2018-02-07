@@ -5,8 +5,8 @@ package com.wp.commonlibrary.baseMVP;
  * Created by WangPing on 2018/1/23.
  */
 
-public interface IPresenter {
-    void attachView(IView view);
+public interface IPresenter<T extends IView> {
+    void attachView(T view);
 
-    void detachView(IView view);
+    void detachView(T view);
 }

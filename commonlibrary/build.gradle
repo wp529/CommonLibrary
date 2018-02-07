@@ -8,7 +8,6 @@ android {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -20,39 +19,27 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    //为了不同模式BuildConfig不总为false
-    productFlavors {
-        create('all') {
-
-        }
-    }
-    publishNonDefault true
 }
 
-configurations {
-    allDebug
-    allRelease
-}
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
-    compile rootProject.ext.dependencies["retrofit"]
-    compile rootProject.ext.dependencies["adapter-rxjava"]
-    compile rootProject.ext.dependencies["rxAndroid"]
-    compile rootProject.ext.dependencies["rxJava"]
-    compile rootProject.ext.dependencies["okHttp"]
-    compile rootProject.ext.dependencies["adapter-gson"]
-    compile rootProject.ext.dependencies["dagger"]
-    compile rootProject.ext.dependencies["progress"]
-    compile rootProject.ext.dependencies["glide"]
-    //annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["adapter-rxjava"]
+    implementation rootProject.ext.dependencies["rxAndroid"]
+    implementation rootProject.ext.dependencies["rxJava"]
+    implementation rootProject.ext.dependencies["okHttp"]
+    implementation rootProject.ext.dependencies["adapter-gson"]
+    implementation rootProject.ext.dependencies["dagger"]
+    implementation rootProject.ext.dependencies["progress"]
+    implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["rxPermission"]
+    implementation rootProject.ext.dependencies["design"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     provided 'org.glassfish:javax.annotation:10.0-b28'
 }

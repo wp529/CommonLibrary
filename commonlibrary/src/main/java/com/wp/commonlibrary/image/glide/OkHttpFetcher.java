@@ -18,7 +18,7 @@ import okhttp3.ResponseBody;
  * Created by WangPing on 2018/1/24.
  */
 
-public class OkHttpFetcher implements DataFetcher<InputStream> {
+class OkHttpFetcher implements DataFetcher<InputStream> {
 
     private final OkHttpClient client;
     private final GlideUrl url;

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/common_library_shape_white_radius_rect"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/common_library_dialog_box_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tool:text="标题" />
+
+        <TextView
+            android:id="@+id/common_library_dialog_box_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:textColor="#323232"
+            android:textSize="15sp"
+            tool:text="内容" />
+
+    </LinearLayout>
+
+    <View style="@style/horizontal_split_line" />
+
+    <TextView
+        android:id="@+id/common_library_dialog_box_positive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/common_library_dialog_positive"
+        android:textSize="17sp"
+        tool:text="我知道了" />
+
+
+</LinearLayout>

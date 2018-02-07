@@ -11,6 +11,10 @@ public class DownloadFile {
     private File file;
     private ProgressListener listener;
 
+    public DownloadFile(String url, File file) {
+        this(url, file, null);
+    }
+
     public DownloadFile(String url, File file, ProgressListener listener) {
         this.url = url;
         this.file = file;

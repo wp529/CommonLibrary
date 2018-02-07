@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.wp.commonlibrary.utils.FileTypeUtils;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,6 +23,8 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.wp.common", appContext.getPackageName());
+
+        String s = FileTypeUtils.getFileType(appContext.getAssets().open("1.pdf"));
+        assertEquals("pdf", s);
     }
 }

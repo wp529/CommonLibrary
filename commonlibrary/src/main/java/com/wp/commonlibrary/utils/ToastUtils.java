@@ -25,7 +25,7 @@ public final class ToastUtils {
     }
 
     public static void showToast(String text) {
-        showToast(text, R.drawable.icon_point);
+        showToast(text, R.drawable.common_library_img_point);
     }
 
     public static void showToast(String text, int imgId) {
