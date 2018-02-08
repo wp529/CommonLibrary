@@ -1,9 +1,7 @@
 package com.wp.common;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
@@ -13,11 +11,9 @@ import android.widget.TextView;
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;
-import com.wp.commonlibrary.dialog.BoxDialog;
-import com.wp.commonlibrary.dialog.DialogHelper;
-import com.wp.commonlibrary.dialog.DialogOperateAdapter;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
+import com.wp.commonlibrary.image.preview.ImagesPreviewActivity;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.ProgressListener;
 import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
@@ -25,9 +21,7 @@ import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionCallBack;
 import com.wp.commonlibrary.permission.PermissionHelper;
-import com.wp.commonlibrary.text.TextWithColor;
 import com.wp.commonlibrary.utils.LogUtils;
-import com.wp.commonlibrary.utils.SettingUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
 
 import java.io.File;
@@ -144,20 +138,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
         }, Permission.cameraPermission());
     }
 
-
-    public void login(View view) {
-        //请求接口
-        //mPresenter.requestData();
-        //加载图片 可带进度
-        //String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516793144571&di=01beb0d58d63c328051647c96c7d3742&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F58619c927133fd015f1656ea505cef48c20089ba.jpg";
-        /*String url = Environment.getExternalStorageDirectory() + File.separator + "scene_photo.jpg";
-        DownloadImage.Builder builder = new DownloadImage.Builder();
-        builder.path(url).targetView(iv)
-                .memoryCache(false)
-                .diskCache(false);
-        ImageHelper.getDefault().loadImage(this, builder.build());*/
-        //PermissionHelper.getDefault().requestPermissions(this, this, Permission.cameraPermission());
+    //图片预览
+    public void imagesPreview(View view) {
+        String[] images = new String[3];
+        images[0] = "http://p9.pstatp.com/large/615c0002e579e79689d0";
+        images[1] = "http://p3.pstatp.com/large/615e00012d933c0d545f";
+        images[2] = "http://p1.pstatp.com/large/615c0002e578aee415e6";
+        ImagesPreviewActivity.startImagesPreview(this, images, 0);
     }
+
 
     @Override
     public void grant(String... permissions) {
@@ -169,21 +158,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
 
     @Override
     public void deniedNotAskAgain(String... permissions) {
-        DialogHelper.getDefault().showDialogBox(this, new BoxDialog.Builder()
-                .cancelable(true)
-                .cancelOutside(true)
-                .singleButton(true)
-                .title("提示")
-                .content(new TextWithColor("如果您不允许 ", Color.BLACK)
-                        , new TextWithColor(Permission.getPermissionDescription(permissions[0]), Color.RED)
-                        , new TextWithColor(" 您将无法使用", Color.BLACK))
-                .positiveText("去设置")
-                .negativeText("取消")
-                .listener(new DialogOperateAdapter() {
-                    @Override
-                    public void positive(Context context) {
-                        SettingUtils.permissionSetting((Activity) context);
-                    }
-                }));
+
     }
 }

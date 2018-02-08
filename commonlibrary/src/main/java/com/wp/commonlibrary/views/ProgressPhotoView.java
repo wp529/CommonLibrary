@@ -8,13 +8,14 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.wp.commonlibrary.utils.LogUtils;
 
 /**
  * 可显示进度的ImageView
  */
-public class ProgressImageView extends android.support.v7.widget.AppCompatImageView implements IViewProgressEvent {
-    private static final String TAG = ProgressImageView.class.getName();
+public class ProgressPhotoView extends PhotoView implements IViewProgressEvent {
+    private static final String TAG = ProgressPhotoView.class.getName();
     private Context mContext;
     public static final int FONT_SIZE = 14;
     public static final int ROUND_WIDTH = 50;
@@ -30,12 +31,12 @@ public class ProgressImageView extends android.support.v7.widget.AppCompatImageV
     private RectF mOval;
 
 
-    public ProgressImageView(Context context) {
+    public ProgressPhotoView(Context context) {
         super(context);
         mContext = context;
     }
 
-    public ProgressImageView(Context context, AttributeSet attrs) {
+    public ProgressPhotoView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
     }

@@ -30,11 +30,11 @@ public class DownloadImage {
     private ViewPropertyAnimation.Animator animator;
 
     private DownloadImage(Builder builder) {
-        if(TextUtils.isEmpty(builder.path) || builder.imageView == null)
+        if (TextUtils.isEmpty(builder.path) || builder.imageView == null)
             throw new IllegalArgumentException("图片路径和加载图片的容器不能为空");
         this.imagePath = builder.path;
         this.imageView = builder.imageView;
-        if(builder.imageView instanceof IViewProgressEvent){
+        if (builder.imageView instanceof IViewProgressEvent) {
             this.listener = new DefaultProgressListener((IViewProgressEvent) imageView);
         } else {
             this.listener = builder.listener;

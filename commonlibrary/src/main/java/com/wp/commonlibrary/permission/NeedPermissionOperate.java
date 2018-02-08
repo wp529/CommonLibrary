@@ -35,7 +35,7 @@ public final class NeedPermissionOperate {
      * @param subPath 子路径
      * @return 构建好的路径
      */
-    public void buildSafeExternalStoragePath(Activity activity, String subPath, MustGrantPermissionCallBack callBack) {
+    public void buildSafeExternalStoragePath(Activity activity, String subPath, CommonPermissionCallBack callBack) {
         StringBuilder builder = new StringBuilder(EXTERNAL_STORAGE_ROOT);
         builder.append(subPath);
         callBack.setResult(builder.toString());

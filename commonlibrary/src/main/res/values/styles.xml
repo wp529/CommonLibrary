@@ -1,4 +1,16 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="ImagesActivityTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">
+            @color/common_library_transparent
+        </item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@color/common_library_transparent</item>
+        <item name="android:activityCloseExitAnimation">@anim/common_library_images_preview_activity_exit</item>
+    </style>
 
     <style name="horizontal_split_line">
         <item name="android:layout_width">match_parent</item>

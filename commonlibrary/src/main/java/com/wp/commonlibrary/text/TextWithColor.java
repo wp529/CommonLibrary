@@ -3,6 +3,7 @@ package com.wp.commonlibrary.text;
 import android.support.annotation.ColorInt;
 
 /**
+ * SpannableString需要使用
  * Created by WangPing on 2018/2/6.
  */
 

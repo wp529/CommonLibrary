@@ -121,13 +121,13 @@ public class BoxDialog {
         positive.setOnClickListener(v -> {
             dialog.dismiss();
             if (this.listener != null)
-                listener.positive(context);
+                listener.positive(context, dialog);
         });
         if (!isSingleButton) {
             negative.setOnClickListener(v -> {
                 dialog.dismiss();
                 if (this.listener != null) {
-                    listener.negative(context);
+                    listener.negative(context, dialog);
                 }
             });
         }

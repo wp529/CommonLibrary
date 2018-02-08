@@ -41,5 +41,6 @@ dependencies {
     implementation rootProject.ext.dependencies["rxPermission"]
     implementation rootProject.ext.dependencies["design"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 }

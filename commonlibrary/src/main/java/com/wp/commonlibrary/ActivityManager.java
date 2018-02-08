@@ -1,9 +1,7 @@
 package com.wp.commonlibrary;
 
+import android.app.Activity;
 import android.content.Context;
-
-import com.wp.commonlibrary.baseMVP.BaseActivity;
-
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -13,7 +11,7 @@ import java.util.Stack;
 
 public class ActivityManager {
 
-    private static Stack<BaseActivity> activityStack;
+    private static Stack<Activity> activityStack;
     private static ActivityManager instance;
 
     private ActivityManager() {
@@ -36,14 +34,14 @@ public class ActivityManager {
     /**
      * 添加Activity到栈
      */
-    public void addActivity(BaseActivity activity) {
+    public void addActivity(Activity activity) {
         activityStack.add(activity);
     }
 
     /**
      * 将activity移除
      */
-    public void removeActivity(BaseActivity activity) {
+    public void removeActivity(Activity activity) {
         if (activity != null) {
             activityStack.remove(activity);
         }
@@ -52,7 +50,7 @@ public class ActivityManager {
     /**
      * 栈顶Activity
      */
-    public BaseActivity topActivity() {
+    public Activity topActivity() {
         return activityStack.lastElement();
     }
 
@@ -60,14 +58,14 @@ public class ActivityManager {
      * 关闭栈顶Activity
      */
     public void finishTopActivity() {
-        BaseActivity activity = activityStack.lastElement();
+        Activity activity = activityStack.lastElement();
         finishSpecifyActivityByInstance(activity);
     }
 
     /**
      * 结束指定的Activity
      */
-    public void finishSpecifyActivityByInstance(BaseActivity activity) {
+    public void finishSpecifyActivityByInstance(Activity activity) {
         if (activity != null) {
             activityStack.remove(activity);
             activity.finish();
@@ -78,9 +76,9 @@ public class ActivityManager {
      * 结束指定类名的Activity
      */
     public void finishSpecifyActivityByClass(Class<?>... cls) {
-        Iterator<BaseActivity> iterator = activityStack.iterator();
+        Iterator<Activity> iterator = activityStack.iterator();
         while (iterator.hasNext()) {
-            BaseActivity integer = iterator.next();
+            Activity integer = iterator.next();
             for (Class<?> c : cls) {
                 if (integer.getClass().equals(c)) {
                     iterator.remove();

@@ -1,5 +1,6 @@
 package com.wp.commonlibrary.dialog;
 
+import android.app.Dialog;
 import android.content.Context;
 
 /**
@@ -7,7 +8,7 @@ import android.content.Context;
  */
 
 public interface IDialogOperateListener {
-    void negative(Context context);
+    void negative(Context context, Dialog dialog);
 
-    void positive(Context context);
+    void positive(Context context, Dialog dialog);
 }
