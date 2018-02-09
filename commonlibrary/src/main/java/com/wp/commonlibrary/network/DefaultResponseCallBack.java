@@ -15,6 +15,7 @@ public abstract class DefaultResponseCallBack<T> implements IResponseCallBack<T>
 
     @Override
     public void onStart(IView view) {
+        //默认使用不可取消的加载框
         view.showLoading();
     }
 }

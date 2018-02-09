@@ -91,7 +91,7 @@ public class ProgressPhotoView extends PhotoView implements IViewProgressEvent {
     }
 
     @Override
-    public void start() {
+    public void start(long totalLength) {
         mShowProgress = true;
         setProgress(0);
         LogUtils.v(TAG, "图片下载开始");

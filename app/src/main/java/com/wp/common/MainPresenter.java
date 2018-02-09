@@ -5,8 +5,9 @@ import com.wp.commonlibrary.baseMVP.BasePresenter;
 import com.wp.commonlibrary.baseMVP.IView;
 import com.wp.commonlibrary.network.DefaultResponseCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
+import com.wp.commonlibrary.network.DownloadHelper;
 import com.wp.commonlibrary.network.FileCallBack;
-import com.wp.commonlibrary.network.retrofit.RetrofitDownloadHelper;
+import com.wp.commonlibrary.network.retrofit.RetrofitDownloadService;
 import com.wp.commonlibrary.network.retrofit.RetrofitHelper;
 import com.wp.commonlibrary.rx.NetworkDefaultObserver;
 import com.wp.commonlibrary.rx.ThreadTransformer;
@@ -48,8 +49,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void downloadFile(DownloadFile downloadFile) {
-        RetrofitDownloadHelper helper = new RetrofitDownloadHelper();
-        helper.download(downloadFile, new FileCallBack() {
+        DownloadHelper.getDefault().download(mView, downloadFile, new FileCallBack() {
             @Override
             public void downloadSuccess(File file) {
                 mView.downloadFileSuccess(file);

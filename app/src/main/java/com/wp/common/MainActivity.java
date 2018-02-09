@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.TextView;
+
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;
@@ -14,6 +15,8 @@ import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
 import com.wp.commonlibrary.image.preview.ImagesPreviewActivity;
 import com.wp.commonlibrary.network.DownloadFile;
+import com.wp.commonlibrary.network.IMainThreadProgressEvent;
+import com.wp.commonlibrary.network.MainThreadProgressListener;
 import com.wp.commonlibrary.network.ProgressListener;
 import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
@@ -21,6 +24,7 @@ import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionCallBack;
 import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.utils.LogUtils;
+import com.wp.commonlibrary.views.IViewProgressEvent;
 import com.wp.commonlibrary.views.ProgressImageView;
 
 import java.io.File;
@@ -61,13 +65,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
     //下载文件
     public void downloadFile(View view) {
         File file = new File(CommonApplication.context.getCacheDir(), System.currentTimeMillis() + ".apk");
-        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, this);
+        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, null);
         mPresenter.downloadFile(downloadFile);
     }
 
     @Override
     public void onStart(long totalLength) {
-        showLoading(true);
+        //showLoading(true);
         LogUtils.e("onStart " + totalLength);
     }
 

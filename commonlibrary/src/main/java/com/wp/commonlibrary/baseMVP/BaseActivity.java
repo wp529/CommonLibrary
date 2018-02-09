@@ -77,7 +77,6 @@ public abstract class BaseActivity<T extends IPresenter> extends Activity implem
                     .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                     .setLabel(getResources().getString(R.string.loading_text))
                     .setCancellable(cancelable);
-
         }
         Dialog dialog = (Dialog) ReflectUtils.getDeclaredObject(hud, "mProgressDialog");
         loadingCancelable(dialog, cancelable);
