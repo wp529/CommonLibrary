@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 
 /**
+ * 在主线程中回调进度
  * Created by WangPing on 2018/2/9.
  */
 

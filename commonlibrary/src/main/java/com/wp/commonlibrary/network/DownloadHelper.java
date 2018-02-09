@@ -4,6 +4,7 @@ import com.wp.commonlibrary.baseMVP.IView;
 import com.wp.commonlibrary.network.retrofit.RetrofitDownloadService;
 
 /**
+ * 下载文件入口
  * Created by WangPing on 2018/2/9.
  */
 

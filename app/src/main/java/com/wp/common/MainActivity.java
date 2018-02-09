@@ -14,7 +14,6 @@ import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
 import com.wp.commonlibrary.image.preview.ImagesPreviewActivity;
 import com.wp.commonlibrary.network.DownloadFile;
-import com.wp.commonlibrary.network.ProgressListener;
 import com.wp.commonlibrary.network.ChangeViewWithProgressListener;
 import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
