@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network.retrofit;
+package com.wp.commonlibrary.rx;
 
 
 import com.wp.commonlibrary.baseMVP.IView;
@@ -12,29 +12,28 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 /**
- * Rx的BaseObserver
+ * Rx的NetworkBaseObserver
  * Created by WangPing on 2018/1/17.
  */
 
-class BaseObserver<T> implements Observer<T> {
+public class NetworkBaseObserver<T> extends BaseObserver<T> {
     private INetworkError networkError;
     private IResponseCallBack<T> callBack;
     private IView view;
 
-    public BaseObserver(INetworkError error, IResponseCallBack<T> callBack) {
+    public NetworkBaseObserver(INetworkError error, IResponseCallBack<T> callBack) {
         this.networkError = error;
         this.callBack = callBack;
     }
 
-    public BaseObserver(IView view, INetworkError error, IResponseCallBack<T> callBack) {
+    public NetworkBaseObserver(IView view, INetworkError error, IResponseCallBack<T> callBack) {
         this.networkError = error;
         this.callBack = callBack;
         this.view = view;
     }
 
     @Override
-    public void onSubscribe(@NonNull Disposable d) {
-        ObservableManager.getInstance().addObservable(d);
+    public void subscribe(Disposable d) {
         callBack.onStart(view);
     }
 
@@ -46,7 +45,6 @@ class BaseObserver<T> implements Observer<T> {
     @Override
     public void onError(@NonNull Throwable e) {
         view.dismissLoading();
-
         if (NetworkUtils.isConnected()) {
             if (e.toString().contains("SocketTimeoutException")) { //请求超时
                 networkError.connectTimeOut(view);
@@ -60,7 +58,7 @@ class BaseObserver<T> implements Observer<T> {
     }
 
     @Override
-    public void onComplete() {
+    public void complete() {
         view.dismissLoading();
     }
 }

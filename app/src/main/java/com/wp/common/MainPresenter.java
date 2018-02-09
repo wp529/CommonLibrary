@@ -1,23 +1,15 @@
 package com.wp.common;
 
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.support.v4.content.FileProvider;
-
-import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BasePresenter;
 import com.wp.commonlibrary.baseMVP.IView;
 import com.wp.commonlibrary.network.DefaultResponseCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.FileCallBack;
-import com.wp.commonlibrary.network.ProgressListener;
-import com.wp.commonlibrary.network.retrofit.DefaultObserver;
 import com.wp.commonlibrary.network.retrofit.RetrofitDownloadHelper;
 import com.wp.commonlibrary.network.retrofit.RetrofitHelper;
-import com.wp.commonlibrary.network.retrofit.ThreadTransformer;
-import com.wp.commonlibrary.utils.LogUtils;
+import com.wp.commonlibrary.rx.NetworkDefaultObserver;
+import com.wp.commonlibrary.rx.ThreadTransformer;
 
 import java.io.File;
 
@@ -38,7 +30,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
                 .getService(TestApiService.class)
                 .testApi(start, count)
                 .compose(ThreadTransformer.io2main())
-                .subscribe(new DefaultObserver<>(mView, new DefaultResponseCallBack<String>() {
+                .subscribe(new NetworkDefaultObserver<>(mView, new DefaultResponseCallBack<String>() {
                     @Override
                     public void success(String result) {
                         mView.requestMovieSuccess(result);

@@ -4,6 +4,7 @@ import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.FileCallBack;
 import com.wp.commonlibrary.network.IDownloadService;
 import com.wp.commonlibrary.network.ProgressManager;
+import com.wp.commonlibrary.rx.ThreadTransformer;
 import com.wp.commonlibrary.utils.FileIOUtils;
 
 import java.io.File;

@@ -7,9 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
-import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
@@ -19,15 +17,7 @@ import com.wp.commonlibrary.image.GetImageCacheAsyncTask;
 import com.wp.commonlibrary.image.IImageService;
 import com.wp.commonlibrary.network.FileCallBack;
 import com.wp.commonlibrary.network.ProgressManager;
-import com.wp.commonlibrary.network.retrofit.ThreadTransformer;
 import com.wp.commonlibrary.utils.LogUtils;
-
-import java.io.File;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Consumer;
 
 /**
  * 图片服务提供者

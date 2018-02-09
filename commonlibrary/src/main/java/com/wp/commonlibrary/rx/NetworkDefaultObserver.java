@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network.retrofit;
+package com.wp.commonlibrary.rx;
 
 
 import android.support.annotation.NonNull;
@@ -11,17 +11,17 @@ import com.wp.commonlibrary.network.IResponseCallBack;
 
 
 /**
- * DefaultObserver
+ * NetworkDefaultObserver
  * Created by WangPing on 2018/1/17.
  */
 
-public class DefaultObserver<T> extends BaseObserver<T> {
+public class NetworkDefaultObserver<T> extends NetworkBaseObserver<T> {
 
-    public DefaultObserver(@NonNull IView view, IResponseCallBack<T> callBack) {
+    public NetworkDefaultObserver(@NonNull IView view, IResponseCallBack<T> callBack) {
         super(view, new DefaultNetworkError(), callBack);
     }
 
-    public DefaultObserver(@NonNull IView view, INetworkError error, IResponseCallBack<T> callBack) {
+    public NetworkDefaultObserver(@NonNull IView view, INetworkError error, IResponseCallBack<T> callBack) {
         super(view, error, callBack);
     }
 

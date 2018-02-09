@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network.retrofit;
+package com.wp.commonlibrary.rx;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -33,5 +33,9 @@ public class ObservableManager {
 
     public void stopObserver() {
         disposable.clear();
+    }
+
+    public void stopObserver(Disposable d) {
+        disposable.remove(d);
     }
 }

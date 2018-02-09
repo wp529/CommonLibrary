@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network.retrofit;
+package com.wp.commonlibrary.rx;
 
 
 import io.reactivex.ObservableTransformer;

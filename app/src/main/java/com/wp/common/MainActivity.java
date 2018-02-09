@@ -7,7 +7,6 @@ import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.widget.TextView;
-
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;

@@ -7,12 +7,11 @@ import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.wp.commonlibrary.ActivityManager;
 import com.wp.commonlibrary.R;
-import com.wp.commonlibrary.network.retrofit.ObservableManager;
+import com.wp.commonlibrary.rx.ObservableManager;
 import com.wp.commonlibrary.utils.ReflectUtils;
 import com.wp.commonlibrary.utils.ToastUtils;
 

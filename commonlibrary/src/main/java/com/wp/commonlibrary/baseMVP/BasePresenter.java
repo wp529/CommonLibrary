@@ -1,6 +1,6 @@
 package com.wp.commonlibrary.baseMVP;
 
-import com.wp.commonlibrary.network.retrofit.ObservableManager;
+import com.wp.commonlibrary.rx.ObservableManager;
 
 /**
  * Presenter的基类
