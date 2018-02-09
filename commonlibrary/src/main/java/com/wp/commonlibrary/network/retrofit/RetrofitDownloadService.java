@@ -9,6 +9,7 @@ import com.wp.commonlibrary.network.ProgressManager;
 import com.wp.commonlibrary.rx.NetworkDefaultObserver;
 import com.wp.commonlibrary.rx.ThreadTransformer;
 import com.wp.commonlibrary.utils.FileIOUtils;
+
 import java.io.File;
 
 /**
@@ -37,6 +38,11 @@ public class RetrofitDownloadService implements IDownloadService {
                 })
                 .compose(ThreadTransformer.io2main())
                 .subscribe(new NetworkDefaultObserver<>(view, new DefaultResponseCallBack<File>() {
+                    @Override
+                    public void onStart(IView view) {
+                        view.showLoading(downloadFile.isCancelable());
+                    }
+
                     @Override
                     public void success(File result) {
                         if (result == null) {

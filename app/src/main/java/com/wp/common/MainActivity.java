@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.view.View;
-import android.widget.TextView;
 
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
@@ -15,23 +14,22 @@ import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
 import com.wp.commonlibrary.image.preview.ImagesPreviewActivity;
 import com.wp.commonlibrary.network.DownloadFile;
-import com.wp.commonlibrary.network.IMainThreadProgressEvent;
-import com.wp.commonlibrary.network.MainThreadProgressListener;
 import com.wp.commonlibrary.network.ProgressListener;
+import com.wp.commonlibrary.network.ChangeViewWithProgressListener;
 import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionCallBack;
 import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.utils.LogUtils;
-import com.wp.commonlibrary.views.IViewProgressEvent;
 import com.wp.commonlibrary.views.ProgressImageView;
+import com.wp.commonlibrary.views.TestTextView;
 
 import java.io.File;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements PermissionCallBack, MainContract.View, ProgressListener {
+public class MainActivity extends BaseActivity<MainPresenter> implements PermissionCallBack, MainContract.View{
     private ProgressImageView ivExample;
-    private TextView tvExample;
+    private TestTextView tvExample;
 
     @Override
     protected int layoutId() {
@@ -41,7 +39,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
     @Override
     protected void findView() {
         ivExample = (ProgressImageView) findView(R.id.iv_example);
-        tvExample = (TextView) findView(R.id.tv_example);
+        tvExample = (TestTextView) findView(R.id.tv_example);
     }
 
     @Override
@@ -65,25 +63,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
     //下载文件
     public void downloadFile(View view) {
         File file = new File(CommonApplication.context.getCacheDir(), System.currentTimeMillis() + ".apk");
-        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, null);
+        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, true, new ChangeViewWithProgressListener(tvExample));
         mPresenter.downloadFile(downloadFile);
     }
 
-    @Override
-    public void onStart(long totalLength) {
-        //showLoading(true);
-        LogUtils.e("onStart " + totalLength);
-    }
-
-    @Override
-    public void onProgress(int progress) {
-        LogUtils.e("onProgress " + progress);
-    }
-
-    @Override
-    public void onEnd(String url) {
-        LogUtils.e("onEnd " + url);
-    }
 
     @Override
     public void downloadFileSuccess(File file) {

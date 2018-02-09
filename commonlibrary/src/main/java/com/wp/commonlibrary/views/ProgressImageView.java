@@ -108,4 +108,9 @@ public class ProgressImageView extends android.support.v7.widget.AppCompatImageV
         invalidate();
         LogUtils.v(TAG, "图片下载结束");
     }
+
+    @Override
+    public void cancel() {
+
+    }
 }

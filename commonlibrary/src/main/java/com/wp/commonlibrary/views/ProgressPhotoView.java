@@ -109,4 +109,9 @@ public class ProgressPhotoView extends PhotoView implements IViewProgressEvent {
         invalidate();
         LogUtils.v(TAG, "图片下载结束");
     }
+
+    @Override
+    public void cancel() {
+
+    }
 }

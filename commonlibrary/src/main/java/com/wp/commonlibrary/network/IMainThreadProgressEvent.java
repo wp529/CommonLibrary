@@ -11,4 +11,6 @@ public interface IMainThreadProgressEvent {
     void updateProgress(int progress);
 
     void end();
+
+    void cancel();
 }

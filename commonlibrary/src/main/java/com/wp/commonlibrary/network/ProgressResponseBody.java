@@ -1,6 +1,11 @@
 package com.wp.commonlibrary.network;
 
+import android.text.TextUtils;
+
+import com.wp.commonlibrary.utils.LogUtils;
+
 import java.io.IOException;
+
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import okio.Buffer;
@@ -54,7 +59,18 @@ public class ProgressResponseBody extends ResponseBody {
 
         @Override
         public long read(Buffer sink, long byteCount) throws IOException {
-            long bytesRead = super.read(sink, byteCount);
+            long bytesRead = -1;
+            try {
+                bytesRead = super.read(sink, byteCount);
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (listener != null && TextUtils.equals("Socket closed", e.getMessage())) { //maybe cancel request
+                    listener.cancel(url);
+                    listener = null;
+                    ProgressManager.removeListener(url);
+                }
+                return bytesRead;
+            }
             long fullLength = responseBody.contentLength();
             if (listener != null && totalBytesRead == 0) {
                 listener.onStart(fullLength);

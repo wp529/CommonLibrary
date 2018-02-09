@@ -10,15 +10,17 @@ import java.io.File;
 public class DownloadFile {
     private String url;
     private File file;
+    private boolean cancelable;
     private ProgressListener listener;
 
     public DownloadFile(String url, File file) {
-        this(url, file, null);
+        this(url, file, false, null);
     }
 
-    public DownloadFile(String url, File file, ProgressListener listener) {
+    public DownloadFile(String url, File file, boolean cancelable, ProgressListener listener) {
         this.url = url;
         this.file = file;
+        this.cancelable = cancelable;
         this.listener = listener;
     }
 
@@ -36,6 +38,14 @@ public class DownloadFile {
 
     public void setFile(File file) {
         this.file = file;
+    }
+
+    public boolean isCancelable() {
+        return cancelable;
+    }
+
+    public void setCancelable(boolean cancelable) {
+        this.cancelable = cancelable;
     }
 
     public ProgressListener getListener() {

@@ -7,8 +7,8 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.request.animation.ViewPropertyAnimation;
 import com.wp.commonlibrary.R;
-import com.wp.commonlibrary.network.MainThreadProgressListener;
 import com.wp.commonlibrary.network.ProgressListener;
+import com.wp.commonlibrary.network.ChangeViewWithProgressListener;
 import com.wp.commonlibrary.views.IViewProgressEvent;
 
 /**
@@ -35,7 +35,7 @@ public class DownloadImage {
         this.imagePath = builder.path;
         this.imageView = builder.imageView;
         if (builder.imageView instanceof IViewProgressEvent) {
-            this.listener = new MainThreadProgressListener((IViewProgressEvent) imageView);
+            this.listener = new ChangeViewWithProgressListener((IViewProgressEvent) imageView);
         } else {
             this.listener = builder.listener;
         }

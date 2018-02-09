@@ -11,4 +11,6 @@ public interface ProgressListener {
     void onProgress(int progress);
 
     void onEnd(String url);
+
+    void cancel(String url);
 }
