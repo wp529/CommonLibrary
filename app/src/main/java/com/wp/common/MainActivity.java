@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.view.View;
-
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;
@@ -23,7 +22,6 @@ import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
 import com.wp.commonlibrary.views.TestTextView;
-
 import java.io.File;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements PermissionCallBack, MainContract.View{
