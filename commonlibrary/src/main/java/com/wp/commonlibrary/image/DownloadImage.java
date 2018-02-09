@@ -12,7 +12,7 @@ import com.wp.commonlibrary.network.ProgressListener;
 import com.wp.commonlibrary.views.IViewProgressEvent;
 
 /**
- * Image请求信息
+ * 加载Image时需要构造的信息
  * Created by WangPing on 2018/1/24.
  */
 

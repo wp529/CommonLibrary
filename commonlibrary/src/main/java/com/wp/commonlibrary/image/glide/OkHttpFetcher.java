@@ -15,6 +15,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 /**
+ * Glide加载进度需要的基于OkHttp的Fetcher
  * Created by WangPing on 2018/1/24.
  */
 

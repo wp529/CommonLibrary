@@ -12,6 +12,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 /**
+ * Rx的BaseObserver
  * Created by WangPing on 2018/1/17.
  */
 

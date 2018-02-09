@@ -30,6 +30,8 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 
 /**
+ * 图片服务提供者
+ * 这里由Glide提供
  * Created by WangPing on 2018/1/24.
  */
 

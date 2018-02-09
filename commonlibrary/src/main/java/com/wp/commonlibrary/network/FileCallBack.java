@@ -3,6 +3,7 @@ package com.wp.commonlibrary.network;
 import java.io.File;
 
 /**
+ * 文件下载回调
  * Created by WangPing on 2018/1/26.
  */
 

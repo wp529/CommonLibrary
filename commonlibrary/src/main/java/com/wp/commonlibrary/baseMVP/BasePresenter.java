@@ -3,6 +3,7 @@ package com.wp.commonlibrary.baseMVP;
 import com.wp.commonlibrary.network.retrofit.ObservableManager;
 
 /**
+ * Presenter的基类
  * Created by WangPing on 2018/1/23.
  */
 

@@ -9,6 +9,7 @@ import com.wp.commonlibrary.utils.FileIOUtils;
 import java.io.File;
 
 /**
+ * Retrofit下载服务
  * Created by WangPing on 2018/1/26.
  */
 

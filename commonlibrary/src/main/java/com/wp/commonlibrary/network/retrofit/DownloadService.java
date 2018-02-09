@@ -7,6 +7,7 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
+ * Retrofit下载文件
  * Created by WangPing on 2018/1/26.
  */
 

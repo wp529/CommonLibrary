@@ -12,6 +12,7 @@ import java.io.InputStream;
 import okhttp3.OkHttpClient;
 
 /**
+ * Glide默认配置
  * Created by WangPing on 2018/1/24.
  */
 

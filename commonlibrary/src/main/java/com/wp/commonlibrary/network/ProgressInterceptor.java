@@ -8,6 +8,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 /**
+ * OkHttp进度拦截器
  * Created by WangPing on 2018/1/24.
  */
 

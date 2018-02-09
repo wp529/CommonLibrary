@@ -6,6 +6,7 @@ import com.wp.commonlibrary.image.glide.GlideService;
 import com.wp.commonlibrary.network.FileCallBack;
 
 /**
+ * 图片加载入口
  * Created by WangPing on 2018/2/6.
  */
 

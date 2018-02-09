@@ -7,6 +7,7 @@ import android.text.style.ForegroundColorSpan;
 import com.wp.commonlibrary.text.TextWithColor;
 
 /**
+ * SpannableString相关工具类
  * Created by WangPing on 2018/2/6.
  */
 

@@ -13,6 +13,7 @@ import java.io.InputStream;
 import okhttp3.OkHttpClient;
 
 /**
+ * Glide加载进度需要的基于OkHttp的Loader
  * Created by WangPing on 2018/1/24.
  */
 class OkHttpGlideUrlLoader implements ModelLoader<GlideUrl, InputStream> {

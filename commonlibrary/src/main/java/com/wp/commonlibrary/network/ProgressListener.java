@@ -1,6 +1,7 @@
 package com.wp.commonlibrary.network;
 
 /**
+ * 网络请求进度回调
  * Created by WangPing on 2018/1/24.
  */
 

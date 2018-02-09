@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 网络请求进度监听器管理
  * Created by Administrator on 2018/1/26.
  */
 

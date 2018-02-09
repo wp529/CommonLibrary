@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.wp.commonlibrary.permission.rxPermission.RxPermissionService;
 
 /**
+ * 权限使用入口
  * Created by WangPing on 2018/2/6.
  */
 

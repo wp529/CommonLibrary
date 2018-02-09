@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 /**
+ * Activity统一管理
  * Created by WangPing on 2018/2/7.
  */
 

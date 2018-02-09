@@ -3,6 +3,7 @@ package com.wp.commonlibrary.network;
 import com.wp.commonlibrary.baseMVP.IView;
 
 /**
+ * 网络故障回调
  * Created by WangPing on 2018/1/17.
  */
 

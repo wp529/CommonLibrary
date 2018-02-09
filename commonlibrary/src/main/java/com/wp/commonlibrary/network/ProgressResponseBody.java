@@ -1,10 +1,6 @@
 package com.wp.commonlibrary.network;
 
-import com.wp.commonlibrary.utils.LogUtils;
-
 import java.io.IOException;
-import java.util.Set;
-
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import okio.Buffer;
@@ -14,6 +10,7 @@ import okio.Okio;
 import okio.Source;
 
 /**
+ * 进度Body
  * Created by WangPing on 2018/1/24.
  */
 

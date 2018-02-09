@@ -1,6 +1,7 @@
 package com.wp.commonlibrary.permission;
 
 /**
+ * 权限回调
  * Created by WangPing on 2018/2/5.
  */
 

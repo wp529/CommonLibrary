@@ -3,6 +3,7 @@ package com.wp.commonlibrary.dialog;
 import android.content.Context;
 
 /**
+ * Dialog使用入口
  * Created by WangPing on 2018/2/6.
  */
 

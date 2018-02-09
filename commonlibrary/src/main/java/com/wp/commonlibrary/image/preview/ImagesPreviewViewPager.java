@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
-import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import com.github.chrisbanes.photoview.PhotoView;
@@ -17,6 +16,7 @@ import com.wp.commonlibrary.R;
 import com.wp.commonlibrary.utils.LogUtils;
 
 /**
+ * 类今日头条图片预览的ViewPager
  * Created by lijian on 2017/11/22.
  */
 

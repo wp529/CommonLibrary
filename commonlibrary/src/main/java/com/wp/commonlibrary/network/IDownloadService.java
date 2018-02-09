@@ -2,6 +2,7 @@ package com.wp.commonlibrary.network;
 
 
 /**
+ * 文件下载服务
  * Created by WangPing on 2018/1/26.
  */
 

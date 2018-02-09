@@ -6,12 +6,11 @@ import android.os.AsyncTask;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.wp.commonlibrary.network.FileCallBack;
-import com.wp.commonlibrary.utils.LogUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
+ * 获取Glide缓存的异步任务
  * Created by WangPing on 2018/2/8.
  */
 

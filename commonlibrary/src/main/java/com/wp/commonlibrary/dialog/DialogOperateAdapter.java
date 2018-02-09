@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 
 /**
+ * Dialog事件可选择实现
  * Created by WangPing on 2018/2/6.
  */
 

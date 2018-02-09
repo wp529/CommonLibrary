@@ -3,6 +3,7 @@ package com.wp.commonlibrary.permission;
 import android.content.Context;
 
 /**
+ * 通用权限申请
  * Created by WangPing on 2018/2/8.
  */
 

@@ -26,6 +26,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
+ * 图片预览界面
  * Created by WangPing on 2018/2/7.
  */
 

@@ -2,18 +2,13 @@ package com.wp.commonlibrary.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
 import com.wp.commonlibrary.R;
 import com.wp.commonlibrary.text.TextWithColor;
 import com.wp.commonlibrary.utils.SpannableStringUtils;

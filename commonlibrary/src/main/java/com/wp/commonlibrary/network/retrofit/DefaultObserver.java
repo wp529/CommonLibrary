@@ -11,6 +11,7 @@ import com.wp.commonlibrary.network.IResponseCallBack;
 
 
 /**
+ * DefaultObserver
  * Created by WangPing on 2018/1/17.
  */
 

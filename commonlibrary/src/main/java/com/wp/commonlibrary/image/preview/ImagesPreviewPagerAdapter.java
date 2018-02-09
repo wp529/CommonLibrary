@@ -5,14 +5,13 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.github.chrisbanes.photoview.PhotoView;
 import com.wp.commonlibrary.R;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
 import com.wp.commonlibrary.views.ProgressPhotoView;
 
 /**
+ * 图片预览的Adapter
  * Created by WangPing on 2018/2/7.
  */
 
