@@ -40,6 +40,7 @@ public class ImagesPreviewActivity extends Activity {
     private View background;
     private String[] images;
     private int currentPage;
+    private ImagesPreviewPagerAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class ImagesPreviewActivity extends Activity {
             }
         });
         container.setPositionListener(new ImagesPreviewViewPager.OnPositionChangeListener() {
+
             @Override
             public void onPositionChange(int initTop, int nowTop, float ratio) {
                 float alpha = 1 - Math.min(1, ratio * 5);
@@ -85,6 +87,17 @@ public class ImagesPreviewActivity extends Activity {
                 finish();
             }
         });
+        adapter.setOnPageClickListener(new ImagesPreviewPagerAdapter.OnPageClickListener() {
+            @Override
+            public void onPageClick(int position) {
+                finish();
+            }
+
+            @Override
+            public void onPageLongClick(int position) {
+                LogUtils.e("onPageLongClick " + position);
+            }
+        });
         save.setOnClickListener(v -> ImageHelper.getDefault().getCacheImage(this, images[currentPage], new FileCallBack() {
             @Override
             public void downloadSuccess(File file) {
@@ -92,12 +105,10 @@ public class ImagesPreviewActivity extends Activity {
                 NeedPermissionOperate.getDefault().buildSafeExternalStoragePath(ImagesPreviewActivity.this, CommonApplication.context.getPackageName() + File.separator + correctImageName, new AllowDeniedPermissionCallBack(ImagesPreviewActivity.this) {
                     @Override
                     public void granted(Context context, String result) {
-                        try {
-                            if (FileIOUtils.writeFileFromIS(result, new FileInputStream(file))) {
-                                ToastUtils.showToast("图片已成功保存到" + CommonApplication.context.getPackageName() + "文件夹下");
-                            }
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
+                        if (FileIOUtils.copyFile(file, result)) {
+                            ToastUtils.showToast("图片已成功保存到" + CommonApplication.context.getPackageName() + "文件夹下");
+                        } else {
+                            ToastUtils.showToast("图片保存失败");
                         }
                     }
                 });
@@ -141,7 +152,7 @@ public class ImagesPreviewActivity extends Activity {
         if (extra != null && extra.length != 0) {
             images = extra;
         }
-        ImagesPreviewPagerAdapter adapter = new ImagesPreviewPagerAdapter(this, images);
+        adapter = new ImagesPreviewPagerAdapter(this, images);
         container.setAdapter(adapter);
         container.setCurrentItem(currentPage, false);
         String firstIndicate = (currentPage + 1) + "/" + images.length;

@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,6 +37,25 @@ public final class FileIOUtils {
     private static final String LINE_SEP = System.getProperty("line.separator");
 
     private static int sBufferSize = 8192;
+
+    /**
+     * 复制文件
+     *
+     * @param from 被拷贝的文件
+     * @param to   拷贝的文件
+     * @return {@code true}: 复制成功<br>{@code false}: 复制失败
+     */
+    public static boolean copyFile(final File from, final String to) {
+        if (from == null)
+            return false;
+        try {
+            return writeFileFromIS(to, new FileInputStream(from));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     /**
      * 将输入流写入文件
@@ -72,6 +92,7 @@ public final class FileIOUtils {
     public static boolean writeFileFromIS(final File file, final InputStream is) {
         return writeFileFromIS(file, is, false);
     }
+
 
     /**
      * 将输入流写入文件

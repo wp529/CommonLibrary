@@ -10,10 +10,12 @@
         android:layout_height="match_parent"
         android:background="@android:color/black" />
 
+
     <com.wp.commonlibrary.image.preview.ImagesPreviewViewPager
         android:id="@+id/common_library_images_preview_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
     <RelativeLayout
         android:id="@+id/common_library_images_preview_bottom_layout"

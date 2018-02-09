@@ -5,9 +5,12 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
 import com.wp.commonlibrary.R;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
+import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.views.ProgressPhotoView;
 
 /**
@@ -19,6 +22,7 @@ public class ImagesPreviewPagerAdapter extends PagerAdapter {
     private String[] images;
     private Context context;
     private View currentView;
+    private OnPageClickListener listener;
 
     public ImagesPreviewPagerAdapter(Context context, String[] images) {
         this.context = context;
@@ -34,6 +38,26 @@ public class ImagesPreviewPagerAdapter extends PagerAdapter {
     public View instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.common_library_layout_images_preview_item, null);
         ProgressPhotoView image = (ProgressPhotoView) view.findViewById(R.id.common_library_images_preview_image);
+        RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.common_library_images_preview_item_container);
+        layout.setOnClickListener(v -> {
+            if (listener != null)
+                listener.onPageClick(position);
+        });
+        image.setOnClickListener(v -> {
+            if (listener != null)
+                listener.onPageClick(position);
+        });
+        layout.setOnLongClickListener(v -> {
+            if (listener != null)
+                listener.onPageLongClick(position);
+            return false;
+        });
+
+        image.setOnLongClickListener(v -> {
+            if (listener != null)
+                listener.onPageLongClick(position);
+            return false;
+        });
         ImageHelper.getDefault().loadImage(context, new DownloadImage.Builder()
                 .path(images[position])
                 .targetView(image)
@@ -61,5 +85,15 @@ public class ImagesPreviewPagerAdapter extends PagerAdapter {
 
     public View getCurrentView() {
         return currentView;
+    }
+
+    public void setOnPageClickListener(OnPageClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnPageClickListener {
+        void onPageClick(int position);
+
+        void onPageLongClick(int position);
     }
 }
