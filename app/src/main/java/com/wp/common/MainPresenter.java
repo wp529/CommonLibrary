@@ -24,24 +24,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void requestMovieData(int start, int count) {
-        String postUrl = "http://182.150.20.24:10025/ZHFQWebService/";
-        String subUrl = "getAllCustOpenOrg.spring";
-        NetworkHelper.getDefault().changeBaseUrl(postUrl).post(mView, subUrl, new DefaultResponseCallBack<String>() {
-            @Override
-            public void success(String result) {
-                mView.requestMovieSuccess(result);
-            }
-
-            @Override
-            public void onStart(IView view) {
-                //设置加载框可否取消
-                view.showLoading(true);
-            }
-        });
-
-
-
-        /*Params params = new Params();
+        Params params = new Params();
         params.param("start", start);
         params.param("count", count);
         NetworkHelper.getDefault().get(mView, "v2/movie/top250", params, new DefaultResponseCallBack<String>() {
@@ -55,7 +38,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
                 //设置加载框可否取消
                 view.showLoading(true);
             }
-        });*/
+        });
     }
 
     @Override

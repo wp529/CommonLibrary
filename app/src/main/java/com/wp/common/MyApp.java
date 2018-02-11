@@ -1,5 +1,6 @@
 package com.wp.common;
 
+import com.squareup.leakcanary.LeakCanary;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.network.NetworkHelper;
 
@@ -14,5 +15,9 @@ public class MyApp extends CommonApplication {
     public void onCreate() {
         super.onCreate();
         NetworkHelper.init(BASE_URL);
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
     }
 }

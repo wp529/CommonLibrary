@@ -38,5 +38,6 @@ dependencies {
     implementation rootProject.ext.dependencies["rxJava"]
     implementation rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 }
