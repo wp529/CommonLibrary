@@ -11,8 +11,6 @@ import android.view.View;
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;
-import com.wp.commonlibrary.dialog.BoxDialog;
-import com.wp.commonlibrary.dialog.DialogHelper;
 import com.wp.commonlibrary.dialog.DialogOperateAdapter;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
@@ -20,7 +18,6 @@ import com.wp.commonlibrary.image.preview.ImagesPreviewActivity;
 import com.wp.commonlibrary.network.DefaultNetworkTypeCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.ChangeViewWithProgressListener;
-import com.wp.commonlibrary.network.INetworkTypeCallBack;
 import com.wp.commonlibrary.network.NeedWifiOperate;
 import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
@@ -30,6 +27,7 @@ import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
 import com.wp.commonlibrary.views.TestTextView;
+import com.wp.sharelogin.ShareHelper;
 
 import java.io.File;
 
@@ -55,7 +53,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
 
     //请求接口
     public void requestApi(View view) {
-        mPresenter.requestMovieData(10, 2);
+        //mPresenter.requestMovieData(10, 2);
+        ShareHelper.getDefault().share2WX(this, "hello");
     }
 
     @Override

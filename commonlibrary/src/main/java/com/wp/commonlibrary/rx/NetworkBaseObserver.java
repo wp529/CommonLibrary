@@ -17,6 +17,7 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class NetworkBaseObserver<T> extends BaseObserver<T> {
+    private static final String TAG = NetworkBaseObserver.class.getName();
     private INetworkError networkError;
     private IResponseCallBack<T> callBack;
     private IView view;
@@ -50,7 +51,7 @@ public class NetworkBaseObserver<T> extends BaseObserver<T> {
                 networkError.connectTimeOut(view);
             } else { //请求失败
                 networkError.connectFail(view);
-                LogUtils.e(e.toString());
+                LogUtils.e(TAG, e.toString());
             }
         } else { //网络连接没打开
             networkError.networkClosed(view);

@@ -12,5 +12,5 @@ import com.wp.commonlibrary.network.FileCallBack;
 public interface IImageService {
     void loadImage(Context context, DownloadImage image);
 
-    void getCacheImage(Context context, String url, FileCallBack callBack);
+    void getCacheImage(String url, FileCallBack callBack);
 }

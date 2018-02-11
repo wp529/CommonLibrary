@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
+import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.network.FileCallBack;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,11 +16,9 @@ import java.io.FileNotFoundException;
  */
 
 public class GetImageCacheAsyncTask extends AsyncTask<String, Void, File> {
-    private Context context;
     private FileCallBack callBack;
 
-    public GetImageCacheAsyncTask(Context context, FileCallBack callBack) {
-        this.context = context.getApplicationContext();
+    public GetImageCacheAsyncTask(FileCallBack callBack) {
         this.callBack = callBack;
     }
 
@@ -27,7 +26,7 @@ public class GetImageCacheAsyncTask extends AsyncTask<String, Void, File> {
     protected File doInBackground(String... params) {
         String imgUrl = params[0];
         try {
-            return Glide.with(context)
+            return Glide.with(CommonApplication.context.getApplicationContext())
                     .load(imgUrl)
                     .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                     .get();

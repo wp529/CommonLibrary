@@ -79,8 +79,8 @@ public class GlideService implements IImageService {
     }
 
     @Override
-    public void getCacheImage(Context context, String url, FileCallBack callBack) {
-        new GetImageCacheAsyncTask(context, callBack).execute(url);
+    public void getCacheImage(String url, FileCallBack callBack) {
+        new GetImageCacheAsyncTask(callBack).execute(url);
     }
 
 }

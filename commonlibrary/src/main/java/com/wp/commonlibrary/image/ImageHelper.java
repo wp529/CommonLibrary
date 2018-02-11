@@ -33,7 +33,7 @@ public class ImageHelper {
         service.loadImage(context, image);
     }
 
-    public void getCacheImage(Context context, String url, FileCallBack callBack) {
-        service.getCacheImage(context, url, callBack);
+    public void getCacheImage(String url, FileCallBack callBack) {
+        service.getCacheImage(url, callBack);
     }
 }

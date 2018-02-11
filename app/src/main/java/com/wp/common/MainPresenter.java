@@ -8,6 +8,7 @@ import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.FileCallBack;
 import com.wp.commonlibrary.network.NetworkHelper;
 import com.wp.commonlibrary.network.Params;
+import com.wp.commonlibrary.utils.LogUtils;
 
 import java.io.File;
 

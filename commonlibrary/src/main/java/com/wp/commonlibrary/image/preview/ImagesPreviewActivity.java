@@ -98,7 +98,7 @@ public class ImagesPreviewActivity extends Activity {
                 LogUtils.e("onPageLongClick " + position);
             }
         });
-        save.setOnClickListener(v -> ImageHelper.getDefault().getCacheImage(this, images[currentPage], new FileCallBack() {
+        save.setOnClickListener(v -> ImageHelper.getDefault().getCacheImage(images[currentPage], new FileCallBack() {
             @Override
             public void downloadSuccess(File file) {
                 String correctImageName = buildCorrectImageName(file.getName());
