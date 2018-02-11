@@ -12,4 +12,6 @@ public interface IDialogOperateListener {
     void negative(Context context, Dialog dialog);
 
     void positive(Context context, Dialog dialog);
+
+    void cancel(Context context, Dialog dialog);
 }

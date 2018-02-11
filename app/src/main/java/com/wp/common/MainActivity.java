@@ -1,19 +1,27 @@
 package com.wp.common;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.view.View;
+
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;
+import com.wp.commonlibrary.dialog.BoxDialog;
+import com.wp.commonlibrary.dialog.DialogHelper;
+import com.wp.commonlibrary.dialog.DialogOperateAdapter;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
 import com.wp.commonlibrary.image.preview.ImagesPreviewActivity;
+import com.wp.commonlibrary.network.DefaultNetworkTypeCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.ChangeViewWithProgressListener;
+import com.wp.commonlibrary.network.INetworkTypeCallBack;
+import com.wp.commonlibrary.network.NeedWifiOperate;
 import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
@@ -22,9 +30,10 @@ import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
 import com.wp.commonlibrary.views.TestTextView;
+
 import java.io.File;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements PermissionCallBack, MainContract.View{
+public class MainActivity extends BaseActivity<MainPresenter> implements PermissionCallBack, MainContract.View {
     private ProgressImageView ivExample;
     private TestTextView tvExample;
 
@@ -59,6 +68,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
 
     //下载文件
     public void downloadFile(View view) {
+        NeedWifiOperate.getDefault().networkTypeShouldBeWifi(new DefaultNetworkTypeCallBack(this) {
+            @Override
+            public void wifi(int netType) {
+                downloadFile();
+            }
+        }.setDialogOperateListener(new DialogOperateAdapter() {
+            @Override
+            public void positive(Context context, Dialog dialog) {
+                downloadFile();
+            }
+        }));
+    }
+
+    private void downloadFile() {
         File file = new File(CommonApplication.context.getCacheDir(), System.currentTimeMillis() + ".apk");
         DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, true, new ChangeViewWithProgressListener(tvExample));
         mPresenter.downloadFile(downloadFile);

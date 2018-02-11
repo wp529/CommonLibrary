@@ -2,6 +2,7 @@ package com.wp.commonlibrary.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+
 import com.wp.commonlibrary.R;
 import com.wp.commonlibrary.text.TextWithColor;
 import com.wp.commonlibrary.utils.SpannableStringUtils;
@@ -126,6 +128,11 @@ public class BoxDialog {
                 }
             });
         }
+        dialog.setOnCancelListener(dialogInterface -> {
+            if (this.listener != null) {
+                listener.cancel(context, dialog);
+            }
+        });
         dialog.show();
     }
 

@@ -17,4 +17,9 @@ public class DialogOperateAdapter implements IDialogOperateListener {
     @Override
     public void positive(Context context, Dialog dialog) {
     }
+
+    @Override
+    public void cancel(Context context, Dialog dialog) {
+
+    }
 }

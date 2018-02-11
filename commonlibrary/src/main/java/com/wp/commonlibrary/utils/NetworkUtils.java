@@ -8,6 +8,8 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 import com.wp.commonlibrary.CommonApplication;
+import com.wp.commonlibrary.network.INetworkTypeCallBack;
+
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -26,15 +28,6 @@ public final class NetworkUtils {
 
     private NetworkUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
-    }
-
-    public enum NetworkType {
-        NETWORK_WIFI,
-        NETWORK_4G,
-        NETWORK_3G,
-        NETWORK_2G,
-        NETWORK_UNKNOWN,
-        NETWORK_NO
     }
 
     /**
@@ -208,22 +201,14 @@ public final class NetworkUtils {
      * {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />}</p>
      *
      * @return 网络类型
-     * <ul>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_WIFI   } </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_4G     } </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_3G     } </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_2G     } </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_UNKNOWN} </li>
-     * <li>{@link NetworkUtils.NetworkType#NETWORK_NO     } </li>
-     * </ul>
      */
-    public static NetworkType getNetworkType() {
-        NetworkType netType = NetworkType.NETWORK_NO;
+    public static int getNetworkType() {
+        int netType = INetworkTypeCallBack.NETWORK_NO;
         NetworkInfo info = getActiveNetworkInfo();
         if (info != null && info.isAvailable()) {
 
             if (info.getType() == ConnectivityManager.TYPE_WIFI) {
-                netType = NetworkType.NETWORK_WIFI;
+                netType = INetworkTypeCallBack.NETWORK_WIFI;
             } else if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
                 switch (info.getSubtype()) {
 
@@ -233,7 +218,7 @@ public final class NetworkUtils {
                     case TelephonyManager.NETWORK_TYPE_EDGE:
                     case TelephonyManager.NETWORK_TYPE_1xRTT:
                     case TelephonyManager.NETWORK_TYPE_IDEN:
-                        netType = NetworkType.NETWORK_2G;
+                        netType = INetworkTypeCallBack.NETWORK_2G;
                         break;
 
                     case NETWORK_TYPE_TD_SCDMA:
@@ -246,12 +231,12 @@ public final class NetworkUtils {
                     case TelephonyManager.NETWORK_TYPE_EVDO_B:
                     case TelephonyManager.NETWORK_TYPE_EHRPD:
                     case TelephonyManager.NETWORK_TYPE_HSPAP:
-                        netType = NetworkType.NETWORK_3G;
+                        netType = INetworkTypeCallBack.NETWORK_3G;
                         break;
 
                     case NETWORK_TYPE_IWLAN:
                     case TelephonyManager.NETWORK_TYPE_LTE:
-                        netType = NetworkType.NETWORK_4G;
+                        netType = INetworkTypeCallBack.NETWORK_4G;
                         break;
                     default:
 
@@ -259,14 +244,14 @@ public final class NetworkUtils {
                         if (subtypeName.equalsIgnoreCase("TD-SCDMA")
                                 || subtypeName.equalsIgnoreCase("WCDMA")
                                 || subtypeName.equalsIgnoreCase("CDMA2000")) {
-                            netType = NetworkType.NETWORK_3G;
+                            netType = INetworkTypeCallBack.NETWORK_3G;
                         } else {
-                            netType = NetworkType.NETWORK_UNKNOWN;
+                            netType = INetworkTypeCallBack.NETWORK_UNKNOWN;
                         }
                         break;
                 }
             } else {
-                netType = NetworkType.NETWORK_UNKNOWN;
+                netType = INetworkTypeCallBack.NETWORK_UNKNOWN;
             }
         }
         return netType;
