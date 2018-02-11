@@ -1,56 +1,17 @@
 package com.wp.commonlibrary.network.retrofit;
 
-import com.wp.commonlibrary.baseMVP.IView;
-import com.wp.commonlibrary.network.DefaultResponseCallBack;
-import com.wp.commonlibrary.network.DownloadFile;
-import com.wp.commonlibrary.network.FileCallBack;
-import com.wp.commonlibrary.network.IDownloadService;
-import com.wp.commonlibrary.network.ProgressManager;
-import com.wp.commonlibrary.rx.NetworkDefaultObserver;
-import com.wp.commonlibrary.rx.ThreadTransformer;
-import com.wp.commonlibrary.utils.FileIOUtils;
-
-import java.io.File;
+import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.http.GET;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 /**
- * Retrofit下载服务
+ * Retrofit下载文件
  * Created by WangPing on 2018/1/26.
  */
-
-public class RetrofitDownloadService implements IDownloadService {
-    @Override
-    public void download(IView view, DownloadFile downloadFile, FileCallBack callBack) {
-        ProgressManager.addListener(downloadFile.getUrl(), downloadFile.getListener()); //监听进度
-
-        RetrofitHelper.getDefault()
-                .getService(DownloadService.class)
-                .download(downloadFile.getUrl())
-                .map(responseBody -> {
-                    File file = downloadFile.getFile();
-                    if (file == null)
-                        throw new IllegalArgumentException("下载文件不能为空");
-
-                    if (FileIOUtils.writeFileFromIS(file, responseBody.byteStream())) {
-                        return file;
-                    } else {
-                        return null;
-                    }
-                })
-                .compose(ThreadTransformer.io2main())
-                .subscribe(new NetworkDefaultObserver<>(view, new DefaultResponseCallBack<File>() {
-                    @Override
-                    public void onStart(IView view) {
-                        view.showLoading(downloadFile.isCancelable());
-                    }
-
-                    @Override
-                    public void success(File result) {
-                        if (result == null) {
-                            callBack.downloadFail(new Exception("文件IO有问题"));
-                        } else {
-                            callBack.downloadSuccess(result);
-                        }
-                    }
-                }));
-    }
+ interface RetrofitDownloadService {
+    @Streaming
+    @GET
+    Observable<ResponseBody> download(@Url String url);
 }

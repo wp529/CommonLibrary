@@ -1,7 +1,7 @@
 package com.wp.common;
 
 import com.wp.commonlibrary.CommonApplication;
-import com.wp.commonlibrary.network.retrofit.RetrofitHelper;
+import com.wp.commonlibrary.network.NetworkHelper;
 
 /**
  * Created by WangPing on 2018/1/17.
@@ -13,6 +13,6 @@ public class MyApp extends CommonApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        RetrofitHelper.init(BASE_URL);
+        NetworkHelper.init(BASE_URL);
     }
 }

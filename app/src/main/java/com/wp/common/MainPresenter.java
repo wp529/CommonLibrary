@@ -5,12 +5,9 @@ import com.wp.commonlibrary.baseMVP.BasePresenter;
 import com.wp.commonlibrary.baseMVP.IView;
 import com.wp.commonlibrary.network.DefaultResponseCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
-import com.wp.commonlibrary.network.DownloadHelper;
 import com.wp.commonlibrary.network.FileCallBack;
-import com.wp.commonlibrary.network.retrofit.RetrofitDownloadService;
-import com.wp.commonlibrary.network.retrofit.RetrofitHelper;
-import com.wp.commonlibrary.rx.NetworkDefaultObserver;
-import com.wp.commonlibrary.rx.ThreadTransformer;
+import com.wp.commonlibrary.network.NetworkHelper;
+import com.wp.commonlibrary.network.Params;
 
 import java.io.File;
 
@@ -27,29 +24,43 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void requestMovieData(int start, int count) {
-        RetrofitHelper.getDefault()
-                .getService(TestApiService.class)
-                .testApi(start, count)
-                .compose(ThreadTransformer.io2main())
-                .subscribe(new NetworkDefaultObserver<>(mView, new DefaultResponseCallBack<String>() {
-                    @Override
-                    public void success(String result) {
-                        mView.requestMovieSuccess(result);
-                    }
+        String postUrl = "http://182.150.20.24:10025/ZHFQWebService/";
+        String subUrl = "getAllCustOpenOrg.spring";
+        NetworkHelper.getDefault().changeBaseUrl(postUrl).post(mView, subUrl, new DefaultResponseCallBack<String>() {
+            @Override
+            public void success(String result) {
+                mView.requestMovieSuccess(result);
+            }
 
-                    @Override
-                    public void onStart(IView view) {
-                        //设置加载框可否取消
-                        view.showLoading(true);
-                    }
+            @Override
+            public void onStart(IView view) {
+                //设置加载框可否取消
+                view.showLoading(true);
+            }
+        });
 
 
-                }));
+
+        /*Params params = new Params();
+        params.param("start", start);
+        params.param("count", count);
+        NetworkHelper.getDefault().get(mView, "v2/movie/top250", params, new DefaultResponseCallBack<String>() {
+            @Override
+            public void success(String result) {
+                mView.requestMovieSuccess(result);
+            }
+
+            @Override
+            public void onStart(IView view) {
+                //设置加载框可否取消
+                view.showLoading(true);
+            }
+        });*/
     }
 
     @Override
     public void downloadFile(DownloadFile downloadFile) {
-        DownloadHelper.getDefault().download(mView, downloadFile, new FileCallBack() {
+        NetworkHelper.getDefault().download(mView, downloadFile, new FileCallBack() {
             @Override
             public void downloadSuccess(File file) {
                 mView.downloadFileSuccess(file);

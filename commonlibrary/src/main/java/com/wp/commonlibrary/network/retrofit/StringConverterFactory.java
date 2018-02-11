@@ -13,7 +13,7 @@ import retrofit2.Retrofit;
  * Created by WangPing on 2018/1/17.
  */
 
-public class StringConverterFactory extends Converter.Factory {
+class StringConverterFactory extends Converter.Factory {
 
     private static final MediaType TEXT = MediaType.parse("text/plain");
 
