@@ -1,6 +1,9 @@
 package com.wp.commonlibrary.dialog;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.support.design.widget.BottomSheetDialog;
+import android.view.View;
 
 /**
  * Dialog使用入口
@@ -35,4 +38,10 @@ public class DialogHelper {
         dialog.show(context);
     }
 
+    public Dialog showBottomSheetDialog(Context context, View contentView) {
+        BottomSheetDialog dialog = new BottomSheetDialog(context);
+        dialog.setContentView(contentView);
+        dialog.show();
+        return dialog;
+    }
 }

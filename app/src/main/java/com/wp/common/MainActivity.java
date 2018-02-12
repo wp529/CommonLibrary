@@ -22,16 +22,17 @@ import com.wp.commonlibrary.network.NeedWifiOperate;
 import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
-import com.wp.commonlibrary.permission.PermissionCallBack;
 import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
 import com.wp.commonlibrary.views.TestTextView;
-import com.wp.sharelogin.ShareHelper;
+import com.wp.sharelogin.bean.ShareInfo;
+import com.wp.sharelogin.callback.IThirtyPartyShareListener;
+import com.wp.sharelogin.share.SharePanelActivity;
 
 import java.io.File;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements PermissionCallBack, MainContract.View {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
     private ProgressImageView ivExample;
     private TestTextView tvExample;
 
@@ -53,8 +54,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
 
     //请求接口
     public void requestApi(View view) {
-        //mPresenter.requestMovieData(10, 2);
-        ShareHelper.getDefault().share2WX(this, "hello");
+        mPresenter.requestMovieData(10, 2);
     }
 
     @Override
@@ -143,6 +143,30 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
         }, Permission.cameraPermission());
     }
 
+    public void share(View view) {
+        SharePanelActivity.startShare(this, new ShareInfo("hello"), new IThirtyPartyShareListener() {
+            @Override
+            public void onShareStart(String platform) {
+                LogUtils.e("onShareStart: " + platform);
+            }
+
+            @Override
+            public void onShareEnd(String platform) {
+                LogUtils.e("onShareEnd: " + platform);
+            }
+
+            @Override
+            public void onShareError(String platform, Throwable throwable) {
+                LogUtils.e("onShareError: " + platform);
+            }
+
+            @Override
+            public void onShareCancel(String platform) {
+                LogUtils.e("onShareCancel: " + platform);
+            }
+        });
+    }
+
     //图片预览
     public void imagesPreview(View view) {
         String[] images = new String[3];
@@ -153,16 +177,4 @@ public class MainActivity extends BaseActivity<MainPresenter> implements Permiss
     }
 
 
-    @Override
-    public void grant(String... permissions) {
-    }
-
-    @Override
-    public void denied(String... permissions) {
-    }
-
-    @Override
-    public void deniedNotAskAgain(String... permissions) {
-
-    }
 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">share&amp;login</string>
+    <string name="share_to">分享到:</string>
+    <string name="wechat">微信</string>
+    <string name="wechat_circle">朋友圈</string>
+    <string name="qq">QQ</string>
+    <string name="weibo">新浪微博</string>
+    <string name="alipay">支付宝</string>
 </resources>

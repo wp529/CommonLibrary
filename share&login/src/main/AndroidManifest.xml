@@ -16,8 +16,10 @@
         android:supportsRtl="true">
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="561cae6ae0f55abd990035bf">
-        </meta-data>
+            android:value="YourAppKey" />
+        <activity android:name=".share.SharePanelActivity"
+            android:theme="@style/SharePanelActivityTheme"
+            />
         <!--微信-->
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -27,7 +29,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--新浪微博-->
         <activity
-            android:name=".weibo.WeiBoEntryActivity"
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -46,7 +48,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!--这里的scheme是qq分享要用的，100424468为自己申请的appid，真实项目中需要替换-->
-                <data android:scheme="tencent100424468" />
+                <data android:scheme="your_appid" />
             </intent-filter>
         </activity>
         <activity

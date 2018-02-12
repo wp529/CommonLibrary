@@ -22,8 +22,6 @@ import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.utils.ToastUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 /**
  * 图片预览界面
@@ -177,6 +175,6 @@ public class ImagesPreviewActivity extends Activity {
     @Override
     public void finish() {
         super.finish();
-        this.overridePendingTransition(R.anim.common_library_images_preview_activity_exit, R.anim.common_library_images_preview_activity_exit);
+        this.overridePendingTransition(R.anim.common_library_activity_alpha_exit, R.anim.common_library_activity_alpha_exit);
     }
 }

@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="ImagesActivityTheme" parent="android:Theme.NoTitleBar">
+    <style name="SharePanelActivityTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">
             @color/common_library_transparent
         </item>
@@ -11,17 +11,4 @@
         <item name="android:windowBackground">@color/common_library_transparent</item>
         <item name="android:activityCloseExitAnimation">@anim/common_library_activity_alpha_exit</item>
     </style>
-
-    <style name="horizontal_split_line">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
-        <item name="android:background">#999999</item>
-    </style>
-
-    <style name="vertical_split_line">
-        <item name="android:layout_width">0.5dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:background">#999999</item>
-    </style>
-
 </resources>
