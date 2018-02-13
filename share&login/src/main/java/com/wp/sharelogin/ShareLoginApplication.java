@@ -18,14 +18,13 @@ public class ShareLoginApplication implements IApplication {
         //正式发版需要屏蔽掉 还需在Manifest里设置UMENG需要的APPKEY
         Config.DEBUG = true;
         //微信开放平台
-        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setWeixin("id", "secret");
         //新浪开放平台
-        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
+        PlatformConfig.setSinaWeibo("id", "secret", "callbackUrl");
         //QQ开放平台  还需在Manifest里设置QQ需要的AppId
         PlatformConfig.setQQZone("id", "key");
         //阿里开放平台
         PlatformConfig.setAlipay("id");
-        LogUtils.e("onCreate");
     }
 
 }

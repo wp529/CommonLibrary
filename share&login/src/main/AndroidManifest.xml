@@ -16,7 +16,7 @@
         android:supportsRtl="true">
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="58edcfeb310c93091c000be2" />
+            android:value="key" />
         <activity
             android:name=".share.SharePanelActivity"
             android:theme="@style/SharePanelActivityTheme" />
@@ -58,8 +58,8 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!--这里的scheme是qq分享要用的，100424468为自己申请的appid，真实项目中需要替换-->
-                <data android:scheme="tencent100424468" />
+                <!--qq分享key-->
+                <data android:scheme="key" />
             </intent-filter>
         </activity>
         <activity

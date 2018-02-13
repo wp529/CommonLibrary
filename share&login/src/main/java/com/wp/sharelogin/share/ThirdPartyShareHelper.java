@@ -65,7 +65,6 @@ class ThirdPartyShareHelper {
             action.withMedia(buildShareImage(activity, info));
         if (!TextUtils.isEmpty(info.getUrl()))  //分享链接
             action.withMedia(buildShareWeb(activity, info));
-
         action.setCallback(new UMShareListener() {
             @Override
             public void onStart(SHARE_MEDIA share_media) {

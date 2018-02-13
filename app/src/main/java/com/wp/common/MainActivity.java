@@ -151,22 +151,26 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         SharePanelActivity.startShare(this, new ShareInfo("hello"), new IThirtyPartyShareListener() {
             @Override
             public void onShareStart(String platform) {
+                showLoading();
                 LogUtils.e("onShareStart: " + platform);
             }
 
             @Override
             public void onShareEnd(String platform) {
+                dismissLoading();
                 LogUtils.e("onShareEnd: " + platform);
             }
 
             @Override
             public void onShareError(String platform, Throwable throwable) {
+                dismissLoading();
                 ToastUtils.showToast(throwable.getMessage());
 
             }
 
             @Override
             public void onShareCancel(String platform) {
+                dismissLoading();
                 LogUtils.e("onShareCancel: " + platform);
             }
         });

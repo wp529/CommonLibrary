@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.umeng.socialize.UMShareAPI;
+import com.wp.commonlibrary.ActivityManager;
 import com.wp.sharelogin.bean.ShareInfo;
 import com.wp.sharelogin.callback.IThirtyPartyShareListener;
 
@@ -21,8 +23,11 @@ public class SharePanelActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityManager.getActivityManager().addActivity(this);
         this.overridePendingTransition(com.wp.commonlibrary.R.anim.common_library_activity_alpha_in, com.wp.commonlibrary.R.anim.common_library_activity_alpha_in);
         ShareInfo info = getIntent().getParcelableExtra(SHARE_INFO);
+        if (info == null)
+            throw new IllegalArgumentException("不能没有分享内容,最好使用SharePanelActivity.startShare()开启分享");
         ThirdPartyPanelHelper.getDefault().showDefaultSharePanel(this, info, listener);
     }
 
@@ -47,6 +52,7 @@ public class SharePanelActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         isShowing = false;
+        ActivityManager.getActivityManager().removeActivity(this);
     }
 
     @Override
