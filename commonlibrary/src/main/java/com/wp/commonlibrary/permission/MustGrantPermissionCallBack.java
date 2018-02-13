@@ -45,7 +45,7 @@ public abstract class MustGrantPermissionCallBack extends CommonPermissionCallBa
 
                     @Override
                     public void negative(Context context, Dialog dialog) {
-                        ActivityManager.getAppManager().finishAllActivity();
+                        ActivityManager.getActivityManager().finishAllActivity();
                     }
                 }));
     }

@@ -1,4 +1,4 @@
-package com.wp.sharelogin.wxapi;
+package com.wp.common.wxapi;
 
 
 import com.umeng.weixin.callback.WXCallbackActivity;

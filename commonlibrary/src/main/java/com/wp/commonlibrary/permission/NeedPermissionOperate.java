@@ -46,6 +46,14 @@ public final class NeedPermissionOperate {
         }
     }
 
+    public void needExternalStoragePermission(Activity activity, CommonPermissionCallBack callBack) {
+        if (!hadPermission(activity, Permission.externalStoragePermission()) && needRequestPermission()) {
+            PermissionHelper.getDefault().requestPermissions(activity, callBack, Permission.externalStoragePermission());
+        } else {
+            callBack.granted(activity, "");
+        }
+    }
+
     private boolean needRequestPermission() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }

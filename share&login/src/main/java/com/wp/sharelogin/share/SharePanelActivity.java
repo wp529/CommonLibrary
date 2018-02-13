@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.umeng.socialize.UMShareAPI;
-import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.sharelogin.bean.ShareInfo;
 import com.wp.sharelogin.callback.IThirtyPartyShareListener;
 

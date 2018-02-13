@@ -2,6 +2,7 @@ package com.wp.commonlibrary;
 
 import android.app.Activity;
 import android.content.Context;
+
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -22,7 +23,7 @@ public class ActivityManager {
     /**
      * 单一实例
      */
-    public static ActivityManager getAppManager() {
+    public static ActivityManager getActivityManager() {
         if (instance == null) {
             synchronized (ActivityManager.class) {
                 if (instance == null)
@@ -54,6 +55,7 @@ public class ActivityManager {
     public Activity topActivity() {
         return activityStack.lastElement();
     }
+
 
     /**
      * 关闭栈顶Activity

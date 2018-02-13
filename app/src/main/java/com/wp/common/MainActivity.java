@@ -24,10 +24,14 @@ import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.utils.LogUtils;
+import com.wp.commonlibrary.utils.ToastUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
 import com.wp.commonlibrary.views.TestTextView;
 import com.wp.sharelogin.bean.ShareInfo;
+import com.wp.sharelogin.bean.ThirdPartyUserInfo;
+import com.wp.sharelogin.callback.IThirtyPartyLoginListener;
 import com.wp.sharelogin.callback.IThirtyPartyShareListener;
+import com.wp.sharelogin.helper.ThirdPartyLoginHelper;
 import com.wp.sharelogin.share.SharePanelActivity;
 
 import java.io.File;
@@ -157,7 +161,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
             @Override
             public void onShareError(String platform, Throwable throwable) {
-                LogUtils.e("onShareError: " + platform);
+                ToastUtils.showToast(throwable.getMessage());
+
             }
 
             @Override

@@ -44,7 +44,7 @@ public class ImagesPreviewActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.common_library_activity_images_preview);
-        ActivityManager.getAppManager().addActivity(this);
+        ActivityManager.getActivityManager().addActivity(this);
         initView();
         initData();
         initListener();
@@ -169,7 +169,7 @@ public class ImagesPreviewActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ActivityManager.getAppManager().removeActivity(this);
+        ActivityManager.getActivityManager().removeActivity(this);
     }
 
     @Override

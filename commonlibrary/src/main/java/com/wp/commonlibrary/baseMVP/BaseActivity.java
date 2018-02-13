@@ -34,7 +34,7 @@ public abstract class BaseActivity<T extends IPresenter> extends Activity implem
         findView();
         inject();
         mPresenter.attachView(this);
-        ActivityManager.getAppManager().addActivity(this);
+        ActivityManager.getActivityManager().addActivity(this);
     }
 
     protected abstract void findView();
@@ -61,7 +61,7 @@ public abstract class BaseActivity<T extends IPresenter> extends Activity implem
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ActivityManager.getAppManager().removeActivity(this);
+        ActivityManager.getActivityManager().removeActivity(this);
     }
 
     @Override

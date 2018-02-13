@@ -7,4 +7,5 @@ import com.umeng.socialize.media.WBShareCallBackActivity;
  */
 
 public class WeiBoEntryActivity extends WBShareCallBackActivity {
+
 }

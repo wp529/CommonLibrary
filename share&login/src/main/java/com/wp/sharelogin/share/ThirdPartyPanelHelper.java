@@ -2,11 +2,19 @@ package com.wp.sharelogin.share;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.wp.commonlibrary.ActivityManager;
 import com.wp.commonlibrary.dialog.DialogHelper;
+import com.wp.commonlibrary.permission.AllowDeniedPermissionCallBack;
+import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
+import com.wp.commonlibrary.permission.NeedPermissionOperate;
+import com.wp.commonlibrary.utils.LogUtils;
+import com.wp.commonlibrary.utils.ToastUtils;
 import com.wp.sharelogin.R;
 import com.wp.sharelogin.bean.ShareInfo;
 import com.wp.sharelogin.callback.IThirtyPartyShareListener;
@@ -42,34 +50,81 @@ class ThirdPartyPanelHelper {
         LinearLayout shareToAlipay = (LinearLayout) view.findViewById(R.id.share_panel_share_to_alipay);
         Dialog dialog = showSharePanel(context, view);
         shareToWechat.setOnClickListener(v -> {
-            ThirdPartyShareHelper.getDefault().share2WX(context, info, listener);
+            ThirdPartyShareHelper.getDefault().share2WX(context, info, new MyThirtyPartyShareListener(context, listener));
             dialog.dismiss();
         });
         shareToWechatCircle.setOnClickListener(v -> {
-            ThirdPartyShareHelper.getDefault().share2WXCircle(context, info, listener);
+            ThirdPartyShareHelper.getDefault().share2WXCircle(context, info, new MyThirtyPartyShareListener(context, listener));
             dialog.dismiss();
         });
         shareToQQ.setOnClickListener(v -> {
-            ThirdPartyShareHelper.getDefault().share2QQ(context, info, listener);
-            dialog.dismiss();
+            NeedPermissionOperate.getDefault().needExternalStoragePermission(context, new AllowDeniedPermissionCallBack(context) {
+                @Override
+                public void granted(Context context, String result) {
+                    ThirdPartyShareHelper.getDefault().share2QQ((Activity) context, info, new MyThirtyPartyShareListener((Activity) context, listener));
+                    dialog.dismiss();
+                }
+            });
+
         });
         shareToWeibo.setOnClickListener(v -> {
-            ThirdPartyShareHelper.getDefault().share2WB(context, info, listener);
+            ThirdPartyShareHelper.getDefault().share2WB(context, info, new MyThirtyPartyShareListener(context, listener));
             dialog.dismiss();
         });
         shareToAlipay.setOnClickListener(v -> {
-            ThirdPartyShareHelper.getDefault().share2Ali(context, info, listener);
+            ThirdPartyShareHelper.getDefault().share2Ali(context, info, new MyThirtyPartyShareListener(context, listener));
             dialog.dismiss();
         });
     }
 
     private Dialog showSharePanel(Activity context, View contentView) {
         Dialog dialog = DialogHelper.getDefault().showBottomSheetDialog(context, contentView);
-        dialog.setOnDismissListener(dialog1 -> {
+        dialog.setOnCancelListener(dialog1 -> {
             if (context instanceof SharePanelActivity) {
-                context.finish();
+                if (!context.isFinishing()) {
+                    context.finish();
+                }
             }
         });
         return dialog;
+    }
+
+    private static class MyThirtyPartyShareListener implements IThirtyPartyShareListener {
+        private IThirtyPartyShareListener listener;
+        private Activity context;
+
+        private MyThirtyPartyShareListener(Activity context, IThirtyPartyShareListener listener) {
+            this.listener = listener;
+            this.context = context;
+        }
+
+        @Override
+        public void onShareStart(String platform) {
+            listener.onShareStart(platform);
+        }
+
+        @Override
+        public void onShareEnd(String platform) {
+            if (!context.isFinishing()) {
+                context.finish();
+            }
+            listener.onShareEnd(platform);
+        }
+
+        @Override
+        public void onShareError(String platform, Throwable throwable) {
+            if (!context.isFinishing()) {
+                context.finish();
+            }
+            listener.onShareError(platform, throwable);
+        }
+
+        @Override
+        public void onShareCancel(String platform) {
+            if (!context.isFinishing()) {
+                context.finish();
+            }
+            listener.onShareCancel(platform);
+        }
     }
 }
