@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.wp.commonlibrary.R;
-import com.wp.commonlibrary.text.TextWithColor;
+import com.wp.commonlibrary.text.TextWithStyle;
 import com.wp.commonlibrary.utils.SpannableStringUtils;
 
 /**
@@ -22,7 +22,7 @@ import com.wp.commonlibrary.utils.SpannableStringUtils;
 public class BoxDialog {
     private String title;
     private String content;
-    private TextWithColor[] contents;
+    private TextWithStyle[] contents;
     private String negativeText;
     private String positiveText;
     private int titleColor;
@@ -138,7 +138,7 @@ public class BoxDialog {
     public static class Builder {
         private String title;
         private String content;
-        private TextWithColor[] contents;
+        private TextWithStyle[] contents;
         private String negativeText = "取消";
         private String positiveText = "确定";
         private int titleColor;
@@ -160,7 +160,7 @@ public class BoxDialog {
             return this;
         }
 
-        public Builder content(TextWithColor... contents) {
+        public Builder content(TextWithStyle... contents) {
             this.contents = contents;
             return this;
         }
