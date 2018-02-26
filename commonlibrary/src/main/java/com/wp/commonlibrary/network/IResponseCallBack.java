@@ -7,13 +7,13 @@ import com.wp.commonlibrary.baseMVP.IView;
  * Created by WangPing on 2018/1/17.
  */
 
-public interface IResponseCallBack<T> {
+public interface IResponseCallBack<K> {
     /**
      * 请求成功后的响应
      *
      * @param t 响应数据
      */
-    void success(T t);
+    void success(K t);
 
     /**
      * 请求发起前可做的操作,加载框是否可以取消之类的

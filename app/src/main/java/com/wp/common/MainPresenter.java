@@ -8,8 +8,6 @@ import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.FileCallBack;
 import com.wp.commonlibrary.network.NetworkHelper;
 import com.wp.commonlibrary.network.Params;
-import com.wp.commonlibrary.utils.LogUtils;
-
 import java.io.File;
 
 import javax.inject.Inject;
@@ -28,9 +26,9 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
         Params params = new Params();
         params.param("start", start);
         params.param("count", count);
-        NetworkHelper.getDefault().get(mView, "v2/movie/top250", params, new DefaultResponseCallBack<String>() {
+        NetworkHelper.getDefault().get(mView, "v2/movie/top250", params, new DefaultResponseCallBack<MovieBean>() {
             @Override
-            public void success(String result) {
+            public void success(MovieBean result) {
                 mView.requestMovieSuccess(result);
             }
 

@@ -8,10 +8,10 @@ import com.wp.commonlibrary.baseMVP.IView;
  * Created by WangPing on 2018/1/24.
  */
 
-public abstract class DefaultResponseCallBack<T> implements IResponseCallBack<T> {
+public abstract class DefaultResponseCallBack<K> implements IResponseCallBack<K> {
 
     @Override
-    public abstract void success(T result);
+    public abstract void success(K result);
 
     @Override
     public void onStart(IView view) {

@@ -13,7 +13,7 @@ import java.io.File;
 
 public interface MainContract {
     interface View extends IView {
-        void requestMovieSuccess(String result);
+        void requestMovieSuccess(MovieBean result);
 
         void downloadFileSuccess(File file);
 

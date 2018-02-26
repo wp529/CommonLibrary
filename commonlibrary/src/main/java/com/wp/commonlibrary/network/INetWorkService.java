@@ -14,14 +14,14 @@ public interface INetWorkService {
      * @param subUrl 子路径
      * @param params 参数
      */
-    void get(IView view, String subUrl, Params params, IResponseCallBack<String> callBack);
+    <K> void get(IView view, String subUrl, Params params, IResponseCallBack<K> callBack);
 
     /**
      * 无参数
      *
      * @param subUrl 子路径
      */
-    void get(IView view, String subUrl, IResponseCallBack<String> callBack);
+    <K> void get(IView view, String subUrl, IResponseCallBack<K> callBack);
 
     /**
      * 有参数
@@ -29,14 +29,14 @@ public interface INetWorkService {
      * @param subUrl 子路径
      * @param params 参数
      */
-    void post(IView view, String subUrl, Params params, IResponseCallBack<String> callBack);
+    <K> void post(IView view, String subUrl, Params params, IResponseCallBack<K> callBack);
 
     /**
      * 无参数
      *
      * @param subUrl 子路径
      */
-    void post(IView view, String subUrl, IResponseCallBack<String> callBack);
+    <K> void post(IView view, String subUrl, IResponseCallBack<K> callBack);
 
     void download(IView view, DownloadFile file, FileCallBack callBack);
 

@@ -50,7 +50,7 @@ public class RetrofitNetworkService implements INetWorkService {
     }
 
     @Override
-    public void get(IView view, String subUrl, Params params, IResponseCallBack<String> callBack) {
+    public <K> void get(IView view, String subUrl, Params params, IResponseCallBack<K> callBack) {
         Params realParams = handleParams(params);
         requestService.get(subUrl, realParams.getParams())
                 .compose(ThreadTransformer.io2main())
@@ -58,7 +58,7 @@ public class RetrofitNetworkService implements INetWorkService {
     }
 
     @Override
-    public void post(IView view, String subUrl, Params params, IResponseCallBack<String> callBack) {
+    public <K> void post(IView view, String subUrl, Params params, IResponseCallBack<K> callBack) {
         Params realParams = handleParams(params);
         requestService.post(subUrl, realParams.getParams())
                 .compose(ThreadTransformer.io2main())
@@ -74,12 +74,12 @@ public class RetrofitNetworkService implements INetWorkService {
     }
 
     @Override
-    public void get(IView view, String subUrl, IResponseCallBack<String> callBack) {
+    public <K> void get(IView view, String subUrl, IResponseCallBack<K> callBack) {
         get(view, subUrl, null, callBack);
     }
 
     @Override
-    public void post(IView view, String subUrl, IResponseCallBack<String> callBack) {
+    public <K> void post(IView view, String subUrl, IResponseCallBack<K> callBack) {
         post(view, subUrl, null, callBack);
     }
 

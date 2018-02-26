@@ -4,10 +4,10 @@ package com.wp.commonlibrary.rx;
 import com.wp.commonlibrary.baseMVP.IView;
 import com.wp.commonlibrary.network.INetworkError;
 import com.wp.commonlibrary.network.IResponseCallBack;
+import com.wp.commonlibrary.utils.GsonUtils;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.utils.NetworkUtils;
-
-import io.reactivex.Observer;
+import java.lang.reflect.ParameterizedType;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
@@ -16,18 +16,18 @@ import io.reactivex.disposables.Disposable;
  * Created by WangPing on 2018/1/17.
  */
 
-public class NetworkBaseObserver<T> extends BaseObserver<T> {
+public class NetworkBaseObserver<T, K> extends BaseObserver<T> {
     private static final String TAG = NetworkBaseObserver.class.getName();
     private INetworkError networkError;
-    private IResponseCallBack<T> callBack;
+    private IResponseCallBack<K> callBack;
     private IView view;
 
-    public NetworkBaseObserver(INetworkError error, IResponseCallBack<T> callBack) {
+    public NetworkBaseObserver(INetworkError error, IResponseCallBack<K> callBack) {
         this.networkError = error;
         this.callBack = callBack;
     }
 
-    public NetworkBaseObserver(IView view, INetworkError error, IResponseCallBack<T> callBack) {
+    public NetworkBaseObserver(IView view, INetworkError error, IResponseCallBack<K> callBack) {
         this.networkError = error;
         this.callBack = callBack;
         this.view = view;
@@ -40,8 +40,26 @@ public class NetworkBaseObserver<T> extends BaseObserver<T> {
 
     @Override
     public void onNext(@NonNull T t) {
-        callBack.success(t);
+        try {
+            Class<?> observerClass = t.getClass(); //observer的泛型
+            Class callBackClass = (Class) ((ParameterizedType) callBack.getClass().getGenericSuperclass()).getActualTypeArguments()[0];//callBack的泛型
+            if (observerClass == callBackClass) {
+                K k = (K) t;
+                callBack.success(k);
+            } else if ("java.lang.String".equals(observerClass.getName())) {
+                String result = (String) t;
+                Object o = GsonUtils.fromJson(result, callBackClass);
+                K k = (K) o;
+                callBack.success(k);
+            } else {
+                throw new IllegalArgumentException("不知道你要怎么转换,请自定义");
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+            LogUtils.e("NetworkBaseObserver", "某些非常规操作导致异常");
+        }
     }
+
 
     @Override
     public void onError(@NonNull Throwable e) {

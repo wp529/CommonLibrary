@@ -15,13 +15,13 @@ import com.wp.commonlibrary.network.IResponseCallBack;
  * Created by WangPing on 2018/1/17.
  */
 
-public class NetworkDefaultObserver<T> extends NetworkBaseObserver<T> {
+public class NetworkDefaultObserver<T,K> extends NetworkBaseObserver<T,K> {
 
-    public NetworkDefaultObserver(@NonNull IView view, IResponseCallBack<T> callBack) {
+    public NetworkDefaultObserver(@NonNull IView view, IResponseCallBack<K> callBack) {
         super(view, new DefaultNetworkError(), callBack);
     }
 
-    public NetworkDefaultObserver(@NonNull IView view, INetworkError error, IResponseCallBack<T> callBack) {
+    public NetworkDefaultObserver(@NonNull IView view, INetworkError error, IResponseCallBack<K> callBack) {
         super(view, error, callBack);
     }
 

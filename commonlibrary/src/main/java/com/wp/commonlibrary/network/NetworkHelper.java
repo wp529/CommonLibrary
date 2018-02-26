@@ -37,19 +37,19 @@ public class NetworkHelper {
         BASE_URL = baseUrl;
     }
 
-    public void get(IView view, String subUrl, Params params, IResponseCallBack<String> callBack) {
+    public <K> void get(IView view, String subUrl, Params params, IResponseCallBack<K> callBack) {
         service.get(view, subUrl, params, callBack);
     }
 
-    public void post(IView view, String subUrl, Params params, IResponseCallBack<String> callBack) {
+    public <K> void post(IView view, String subUrl, Params params, IResponseCallBack<K> callBack) {
         service.post(view, subUrl, params, callBack);
     }
 
-    public void get(IView view, String subUrl, IResponseCallBack<String> callBack) {
+    public <K> void get(IView view, String subUrl, IResponseCallBack<K> callBack) {
         service.get(view, subUrl, null, callBack);
     }
 
-    public void post(IView view, String subUrl, IResponseCallBack<String> callBack) {
+    public <K> void post(IView view, String subUrl, IResponseCallBack<K> callBack) {
         service.post(view, subUrl, null, callBack);
     }
 

@@ -3,14 +3,10 @@ package com.wp.common;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
-import android.text.SpannableString;
 import android.view.View;
-
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;
@@ -26,16 +22,13 @@ import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionHelper;
-import com.wp.commonlibrary.text.TextWithStyle;
 import com.wp.commonlibrary.utils.LogUtils;
-import com.wp.commonlibrary.utils.SpannableStringUtils;
 import com.wp.commonlibrary.utils.ToastUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
 import com.wp.commonlibrary.views.TestTextView;
 import com.wp.sharelogin.bean.ShareInfo;
 import com.wp.sharelogin.callback.IThirtyPartyShareListener;
 import com.wp.sharelogin.share.SharePanelActivity;
-
 import java.io.File;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
@@ -64,9 +57,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    public void requestMovieSuccess(String result) {
+    public void requestMovieSuccess(MovieBean result) {
         tvExample.setVisibility(View.VISIBLE);
-        tvExample.setText(result);
+        tvExample.setText(result.toString());
         ivExample.setVisibility(View.GONE);
     }
 
