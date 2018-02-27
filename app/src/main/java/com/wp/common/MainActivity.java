@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.view.View;
+
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.baseMVP.BaseActivity;
@@ -22,6 +23,8 @@ import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionHelper;
+import com.wp.commonlibrary.utils.APKUtils;
+import com.wp.commonlibrary.utils.FileTypeUtils;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.utils.ToastUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
@@ -29,6 +32,7 @@ import com.wp.commonlibrary.views.TestTextView;
 import com.wp.sharelogin.bean.ShareInfo;
 import com.wp.sharelogin.callback.IThirtyPartyShareListener;
 import com.wp.sharelogin.share.SharePanelActivity;
+
 import java.io.File;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
@@ -88,16 +92,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void downloadFileSuccess(File file) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri data;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            data = FileProvider.getUriForFile(CommonApplication.context, "com.wp.common.fileprovider", file);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        if (APKUtils.APKCanInstall(file)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Uri data;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                data = FileProvider.getUriForFile(CommonApplication.context, "com.wp.common.fileprovider", file);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            } else {
+                data = Uri.fromFile(file);
+            }
+            intent.setDataAndType(data, "application/vnd.android.package-archive");
+            CommonApplication.context.startActivity(intent);
         } else {
-            data = Uri.fromFile(file);
+            ToastUtils.showToast("安装包不完整,请重新下载");
         }
-        intent.setDataAndType(data, "application/vnd.android.package-archive");
-        CommonApplication.context.startActivity(intent);
     }
 
     @Override

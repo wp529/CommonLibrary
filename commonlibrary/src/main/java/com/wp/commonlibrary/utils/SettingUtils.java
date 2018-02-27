@@ -17,24 +17,27 @@ public final class SettingUtils {
 
     public static void permissionSetting(Activity activity) {
         String brand = Build.BRAND;
-        if (TextUtils.equals(brand.toLowerCase(), "redmi") || TextUtils.equals(brand.toLowerCase(), "xiaomi")) {
-            miuiPermission(activity);
-        } else if (TextUtils.equals(brand.toLowerCase(), "meizu")) {
-            meizuPermission(activity);
-        } else if (TextUtils.equals(brand.toLowerCase(), "huawei") || TextUtils.equals(brand.toLowerCase(), "honor")) {
-            huaweiPermission(activity);
-        } else {
-            commonPermission(activity);
+        try {
+            if (TextUtils.equals(brand.toLowerCase(), "redmi") || TextUtils.equals(brand.toLowerCase(), "xiaomi")) {
+                miuiPermission(activity);
+            } else if (TextUtils.equals(brand.toLowerCase(), "meizu")) {
+                meizuPermission(activity);
+            } else if (TextUtils.equals(brand.toLowerCase(), "huawei") || TextUtils.equals(brand.toLowerCase(), "honor")) {
+                huaweiPermission(activity);
+            } else {
+                commonPermission(activity);
+            }
+        } catch (Exception e) {
+            ToastUtils.showCommonToast("未找到" + brand + "设置页,请兼容");
+            e.printStackTrace();
         }
     }
 
     private static void miuiPermission(Activity activity) {
         Intent intent = new Intent("miui.intent.action.APP_PERM_EDITOR");
-        ComponentName componentName = new ComponentName("com.miui.securitycenter", "com.miui.permcenter.permissions.AppPermissionsEditorActivity");
-        intent.setComponent(componentName);
+        intent.setClassName("com.miui.securitycenter", "com.miui.permcenter.permissions.PermissionsEditorActivity");
         intent.putExtra("extra_pkgname", activity.getPackageName());
-        activity.startActivityForResult(intent, SETTING_PERMISSION);
-
+        activity.startActivity(intent);
     }
 
     private static void meizuPermission(Activity activity) {

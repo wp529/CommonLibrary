@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.utils.FileTypeUtils;
 
 import org.junit.Test;
