@@ -3,11 +3,15 @@ package com.wp.commonlibrary.rx;
 
 import com.wp.commonlibrary.baseMVP.IView;
 import com.wp.commonlibrary.network.INetworkError;
+import com.wp.commonlibrary.network.INetworkResultConvert;
 import com.wp.commonlibrary.network.IResponseCallBack;
+import com.wp.commonlibrary.network.NetworkHelper;
 import com.wp.commonlibrary.utils.GsonUtils;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.utils.NetworkUtils;
+
 import java.lang.reflect.ParameterizedType;
+
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
@@ -47,8 +51,9 @@ public class NetworkBaseObserver<T, K> extends BaseObserver<T> {
                 K k = (K) t;
                 callBack.success(k);
             } else if ("java.lang.String".equals(observerClass.getName())) {
+                INetworkResultConvert convert = NetworkHelper.getDefault().getConvert();
                 String result = (String) t;
-                Object o = GsonUtils.fromJson(result, callBackClass);
+                Object o = convert.convert(result, callBackClass);
                 K k = (K) o;
                 callBack.success(k);
             } else {

@@ -14,6 +14,7 @@ public class NetworkHelper {
     private static String BASE_URL;
     private static NetworkHelper helper;
     private INetWorkService service;
+    private INetworkResultConvert convert;
 
     private NetworkHelper() {
         if (TextUtils.isEmpty(BASE_URL)) {
@@ -33,8 +34,28 @@ public class NetworkHelper {
         return helper;
     }
 
+    /**
+     * 初始化网络请求baseUrl
+     *
+     * @param baseUrl baseUrl
+     */
     public static void init(String baseUrl) {
         BASE_URL = baseUrl;
+    }
+
+    /**
+     * 设置网络请求结果转换器
+     *
+     * @param convert 转换器
+     */
+    public void setConvert(INetworkResultConvert convert) {
+        this.convert = convert;
+    }
+
+    public INetworkResultConvert getConvert() {
+        if (this.convert == null)
+            this.convert = new JsonConvert();
+        return this.convert;
     }
 
     public <K> void get(IView view, String subUrl, Params params, IResponseCallBack<K> callBack) {

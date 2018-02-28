@@ -18,14 +18,14 @@
 
 #####示例代码
 * 请求接口
-
+可在请求前全局设置网络请求结果的转换器,NetworkHelper.getDefault().setConvert(INetworkResultConvert convert);默认为json转实体类,可自行实现INetworkResultConvert接口,设置你想要的转换器,xml转换之类的。
 ```
 Params params = new Params();
 params.param("start", start);
 params.param("count", count);
-NetworkHelper.getDefault().get(mView, "v2/movie/top250", params, new DefaultResponseCallBack<String>() {
+NetworkHelper.getDefault().get(mView, "v2/movie/top250", params, new DefaultResponseCallBack<MovieBean>() {
             @Override
-            public void success(String result) {
+            public void success(MovieBean result) {
                 mView.requestMovieSuccess(result);
             }
 
