@@ -26,11 +26,15 @@ public class NeedWifiOperate {
     }
 
     public void networkTypeShouldBeWifi(INetworkTypeCallBack type) {
-        int netType = NetworkUtils.getNetworkType();
-        if (netType == INetworkTypeCallBack.NETWORK_WIFI) {
-            type.wifi(netType);
+        if (NetworkUtils.isConnected()) {
+            int netType = NetworkUtils.getNetworkType();
+            if (netType == INetworkTypeCallBack.NETWORK_WIFI) {
+                type.wifi(netType);
+            } else {
+                type.other(netType);
+            }
         } else {
-            type.other(netType);
+            type.disConnect();
         }
     }
 }

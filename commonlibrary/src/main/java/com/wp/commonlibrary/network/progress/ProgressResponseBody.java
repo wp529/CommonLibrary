@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.wp.commonlibrary.utils.LogUtils;
+import com.wp.commonlibrary.utils.NetworkUtils;
 
 import java.io.IOException;
 
@@ -21,6 +22,7 @@ import okio.Source;
  */
 
 public class ProgressResponseBody extends ResponseBody {
+    private static final String TAG = ProgressResponseBody.class.getName();
     private BufferedSource bufferedSource;
     private ResponseBody responseBody;
     private ProgressListener listener;
@@ -60,15 +62,32 @@ public class ProgressResponseBody extends ResponseBody {
 
         @Override
         public long read(@NonNull Buffer sink, long byteCount) throws IOException {
+            if (NetworkUtils.isConnected()) {
+                return doRead(sink, byteCount);
+            } else {
+                LogUtils.e(TAG, "没有网络连接");
+                listener.networkInterrupt(url);
+                listener = null;
+                ProgressManager.removeListener(url);
+                return -1;
+            }
+        }
+
+        private long doRead(Buffer sink, long byteCount) {
             long bytesRead = -1;
             try {
                 bytesRead = super.read(sink, byteCount);
             } catch (Exception e) {
                 e.printStackTrace();
                 LogUtils.e(e.getMessage());
-                //maybe cancel request
                 if (listener != null && TextUtils.equals("Socket closed", e.getMessage())) {
+                    //maybe cancel request
                     listener.cancel(url);
+                    listener = null;
+                    ProgressManager.removeListener(url);
+                } else if (listener != null && TextUtils.equals("Software caused connection abort", e.getMessage())) {
+                    //网络连接中断
+                    listener.networkInterrupt(url);
                     listener = null;
                     ProgressManager.removeListener(url);
                 }

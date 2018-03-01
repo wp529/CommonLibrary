@@ -24,4 +24,9 @@ public interface INetworkTypeCallBack {
      * @param netType 网络状态
      */
     void other(int netType);
+
+    /**
+     * 无网络连接
+     */
+    void disConnect();
 }

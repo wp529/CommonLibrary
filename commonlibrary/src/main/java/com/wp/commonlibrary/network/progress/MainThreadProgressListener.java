@@ -43,4 +43,8 @@ public abstract class MainThreadProgressListener implements ProgressListener, IM
         handler.sendEmptyMessage(MainThreadProgressHandler.CANCEL);
     }
 
+    @Override
+    public void networkInterrupt(String url) {
+        handler.sendEmptyMessage(MainThreadProgressHandler.INTERRUPT);
+    }
 }

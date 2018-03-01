@@ -1,10 +1,14 @@
 package com.wp.commonlibrary.network.networktype;
 
 
+import android.app.Dialog;
 import android.content.Context;
+
 import com.wp.commonlibrary.dialog.BoxDialog;
 import com.wp.commonlibrary.dialog.DialogHelper;
+import com.wp.commonlibrary.dialog.DialogOperateAdapter;
 import com.wp.commonlibrary.dialog.IDialogOperateListener;
+import com.wp.commonlibrary.utils.NetworkUtils;
 
 /**
  * 不是WiFi状态弹窗
@@ -21,6 +25,7 @@ public abstract class DefaultNetworkTypeCallBack implements INetworkTypeCallBack
 
     /**
      * 网络状态为WiFi
+     *
      * @param netType 网络状态
      */
     @Override
@@ -36,6 +41,23 @@ public abstract class DefaultNetworkTypeCallBack implements INetworkTypeCallBack
                                 .negativeText("取消")
                                 .positiveText("继续")
                                 .listener(listener));
+    }
+
+    @Override
+    public void disConnect() {
+        DialogHelper.getDefault()
+                .showDialogBox(context
+                        , new BoxDialog.Builder()
+                                .title("温馨提示")
+                                .content("您当前网络连接未启用")
+                                .negativeText("取消")
+                                .positiveText("去设置")
+                                .listener(new DialogOperateAdapter() {
+                                    @Override
+                                    public void positive(Context context, Dialog dialog) {
+                                        NetworkUtils.openWirelessSettings();
+                                    }
+                                }));
     }
 
     public DefaultNetworkTypeCallBack setDialogOperateListener(IDialogOperateListener listener) {

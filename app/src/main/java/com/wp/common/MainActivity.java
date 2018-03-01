@@ -11,6 +11,8 @@ import android.view.View;
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.basemvp.BaseActivity;
+import com.wp.commonlibrary.dialog.BoxDialog;
+import com.wp.commonlibrary.dialog.DialogHelper;
 import com.wp.commonlibrary.dialog.DialogOperateAdapter;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;

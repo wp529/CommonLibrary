@@ -55,7 +55,7 @@ public class ProgressImageView extends android.support.v7.widget.AppCompatImageV
         mOval = new RectF(mCenterX - mRadius, mCenterY - mRadius, mCenterX
                 + mRadius, mCenterY + mRadius);
     }
-
+    @Override
     public void onDraw(Canvas canvas) {
         if (mShowProgress) {
             if (mCenterX == 0 || mCenterY == 0) {
@@ -111,6 +111,11 @@ public class ProgressImageView extends android.support.v7.widget.AppCompatImageV
 
     @Override
     public void cancel() {
+
+    }
+
+    @Override
+    public void interrupt() {
 
     }
 }

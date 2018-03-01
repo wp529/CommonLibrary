@@ -33,4 +33,11 @@ public interface ProgressListener {
      * @param url 请求url
      */
     void cancel(String url);
+
+    /**
+     * 网络连接中断
+     *
+     * @param url 请求url
+     */
+    void networkInterrupt(String url);
 }

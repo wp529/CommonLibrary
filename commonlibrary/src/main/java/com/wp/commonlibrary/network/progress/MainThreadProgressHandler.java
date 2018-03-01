@@ -13,6 +13,7 @@ public class MainThreadProgressHandler extends Handler {
     public static final int UPDATE = 0X0000010;
     public static final int END = 0X0000100;
     public static final int CANCEL = 0X0001000;
+    public static final int INTERRUPT = 0X0010000;
     private IMainThreadProgressEvent event;
 
     public MainThreadProgressHandler(IMainThreadProgressEvent listener) {
@@ -42,6 +43,10 @@ public class MainThreadProgressHandler extends Handler {
                     event.cancel();
                 }
                 break;
+            case INTERRUPT:
+                if (event != null) {
+                    event.interrupt();
+                }
             default:
                 break;
         }

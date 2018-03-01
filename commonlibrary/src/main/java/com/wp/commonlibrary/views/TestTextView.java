@@ -2,6 +2,7 @@ package com.wp.commonlibrary.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+
 import com.wp.commonlibrary.utils.LogUtils;
 
 /**
@@ -41,5 +42,11 @@ public class TestTextView extends android.support.v7.widget.AppCompatTextView im
     public void cancel() {
         setText("");
         LogUtils.e("cancel");
+    }
+
+    @Override
+    public void interrupt() {
+        setText("网络连接中断");
+        LogUtils.e("TestTextView", "interrupt");
     }
 }

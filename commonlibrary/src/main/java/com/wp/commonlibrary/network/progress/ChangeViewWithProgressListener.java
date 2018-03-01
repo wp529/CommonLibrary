@@ -34,4 +34,9 @@ public class ChangeViewWithProgressListener extends MainThreadProgressListener {
         event.cancel();
     }
 
+    @Override
+    public void interrupt() {
+        event.interrupt();
+    }
+
 }

@@ -29,4 +29,9 @@ public interface IMainThreadProgressEvent {
      * 网络请求取消
      */
     void cancel();
+
+    /**
+     * 网络连接中断
+     */
+    void interrupt();
 }
