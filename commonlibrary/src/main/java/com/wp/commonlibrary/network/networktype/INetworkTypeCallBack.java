@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.networktype;
 
 /**
  * 网络类型回调

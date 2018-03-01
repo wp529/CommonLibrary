@@ -3,6 +3,10 @@ package com.wp.commonlibrary.network;
 import android.text.TextUtils;
 
 import com.wp.commonlibrary.basemvp.IView;
+import com.wp.commonlibrary.network.callback.FileCallBack;
+import com.wp.commonlibrary.network.callback.IResponseCallBack;
+import com.wp.commonlibrary.network.convert.INetworkResultConvert;
+import com.wp.commonlibrary.network.convert.JsonConvert;
 import com.wp.commonlibrary.network.retrofit.RetrofitNetworkService;
 
 /**

@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 import com.wp.commonlibrary.CommonApplication;
-import com.wp.commonlibrary.network.INetworkTypeCallBack;
+import com.wp.commonlibrary.network.networktype.INetworkTypeCallBack;
 
 import java.lang.reflect.Method;
 import java.net.InetAddress;

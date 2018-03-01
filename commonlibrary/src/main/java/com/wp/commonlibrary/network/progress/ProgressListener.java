@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.progress;
 
 /**
  * 网络请求进度回调

@@ -14,7 +14,7 @@ import com.wp.commonlibrary.ActivityManager;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.R;
 import com.wp.commonlibrary.image.ImageHelper;
-import com.wp.commonlibrary.network.FileCallBack;
+import com.wp.commonlibrary.network.callback.FileCallBack;
 import com.wp.commonlibrary.permission.AllowDeniedPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.utils.FileIOUtils;

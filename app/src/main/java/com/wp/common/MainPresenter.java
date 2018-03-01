@@ -3,9 +3,9 @@ package com.wp.common;
 
 import com.wp.commonlibrary.basemvp.BasePresenter;
 import com.wp.commonlibrary.basemvp.IView;
-import com.wp.commonlibrary.network.DefaultResponseCallBack;
+import com.wp.commonlibrary.network.callback.DefaultResponseCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
-import com.wp.commonlibrary.network.FileCallBack;
+import com.wp.commonlibrary.network.callback.FileCallBack;
 import com.wp.commonlibrary.network.NetworkHelper;
 import com.wp.commonlibrary.network.Params;
 import java.io.File;

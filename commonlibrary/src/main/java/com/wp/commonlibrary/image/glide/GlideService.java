@@ -15,8 +15,8 @@ import com.bumptech.glide.request.target.Target;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.GetImageCacheAsyncTask;
 import com.wp.commonlibrary.image.IImageService;
-import com.wp.commonlibrary.network.FileCallBack;
-import com.wp.commonlibrary.network.ProgressManager;
+import com.wp.commonlibrary.network.callback.FileCallBack;
+import com.wp.commonlibrary.network.progress.ProgressManager;
 import com.wp.commonlibrary.utils.LogUtils;
 
 /**

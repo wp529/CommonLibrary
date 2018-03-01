@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.progress;
 
 import android.os.Handler;
 import android.os.Message;

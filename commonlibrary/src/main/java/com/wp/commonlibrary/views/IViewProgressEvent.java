@@ -1,6 +1,6 @@
 package com.wp.commonlibrary.views;
 
-import com.wp.commonlibrary.network.IMainThreadProgressEvent;
+import com.wp.commonlibrary.network.progress.IMainThreadProgressEvent;
 
 /**
  * 需要使用进度的View实现

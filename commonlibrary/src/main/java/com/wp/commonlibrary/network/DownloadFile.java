@@ -1,5 +1,7 @@
 package com.wp.commonlibrary.network;
 
+import com.wp.commonlibrary.network.progress.ProgressListener;
+
 import java.io.File;
 
 /**

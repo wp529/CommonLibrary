@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.callback;
 
 import com.wp.commonlibrary.basemvp.IView;
 

@@ -1,7 +1,9 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.progress;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import com.wp.commonlibrary.utils.LogUtils;
 
 import java.io.IOException;
 
@@ -63,6 +65,7 @@ public class ProgressResponseBody extends ResponseBody {
                 bytesRead = super.read(sink, byteCount);
             } catch (Exception e) {
                 e.printStackTrace();
+                LogUtils.e(e.getMessage());
                 //maybe cancel request
                 if (listener != null && TextUtils.equals("Socket closed", e.getMessage())) {
                     listener.cancel(url);

@@ -2,9 +2,9 @@ package com.wp.commonlibrary.rx;
 
 
 import com.wp.commonlibrary.basemvp.IView;
-import com.wp.commonlibrary.network.INetworkError;
-import com.wp.commonlibrary.network.INetworkResultConvert;
-import com.wp.commonlibrary.network.IResponseCallBack;
+import com.wp.commonlibrary.network.error.INetworkError;
+import com.wp.commonlibrary.network.convert.INetworkResultConvert;
+import com.wp.commonlibrary.network.callback.IResponseCallBack;
 import com.wp.commonlibrary.network.NetworkHelper;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.utils.NetworkUtils;

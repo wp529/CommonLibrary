@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.convert;
 
 import com.wp.commonlibrary.utils.GsonUtils;
 

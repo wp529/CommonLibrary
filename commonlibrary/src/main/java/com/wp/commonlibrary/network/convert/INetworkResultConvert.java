@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.convert;
 
 /**
  * 网络请求结果转换实体类

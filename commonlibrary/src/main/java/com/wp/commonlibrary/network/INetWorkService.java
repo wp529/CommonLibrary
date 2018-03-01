@@ -1,6 +1,8 @@
 package com.wp.commonlibrary.network;
 
 import com.wp.commonlibrary.basemvp.IView;
+import com.wp.commonlibrary.network.callback.FileCallBack;
+import com.wp.commonlibrary.network.callback.IResponseCallBack;
 
 /**
  * 网络请求服务

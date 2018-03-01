@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.progress;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.network;
+package com.wp.commonlibrary.network.progress;
 
 /**
  * 需要使用网络进度的View实现

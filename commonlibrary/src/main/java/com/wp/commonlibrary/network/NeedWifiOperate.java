@@ -1,5 +1,6 @@
 package com.wp.commonlibrary.network;
 
+import com.wp.commonlibrary.network.networktype.INetworkTypeCallBack;
 import com.wp.commonlibrary.utils.NetworkUtils;
 
 /**

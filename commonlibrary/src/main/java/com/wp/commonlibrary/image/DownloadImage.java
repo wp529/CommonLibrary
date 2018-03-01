@@ -7,8 +7,8 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.request.animation.ViewPropertyAnimation;
 import com.wp.commonlibrary.R;
-import com.wp.commonlibrary.network.ProgressListener;
-import com.wp.commonlibrary.network.ChangeViewWithProgressListener;
+import com.wp.commonlibrary.network.progress.ProgressListener;
+import com.wp.commonlibrary.network.progress.ChangeViewWithProgressListener;
 import com.wp.commonlibrary.views.IViewProgressEvent;
 
 /**

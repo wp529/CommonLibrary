@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
-import com.wp.commonlibrary.network.ProgressInterceptor;
+import com.wp.commonlibrary.network.progress.ProgressInterceptor;
 
 import java.io.InputStream;
 

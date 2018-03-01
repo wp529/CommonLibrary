@@ -2,7 +2,7 @@ package com.wp.commonlibrary.image;
 
 import android.content.Context;
 
-import com.wp.commonlibrary.network.FileCallBack;
+import com.wp.commonlibrary.network.callback.FileCallBack;
 
 /**
  * 图片加载服务

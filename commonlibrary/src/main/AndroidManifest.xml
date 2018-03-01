@@ -19,9 +19,7 @@
         </provider>
         <activity
             android:name=".image.preview.ImagesPreviewActivity"
-            android:theme="@style/ImagesActivityTheme">
-
-        </activity>
+            android:theme="@style/ImagesActivityTheme" />
     </application>
 
 </manifest>

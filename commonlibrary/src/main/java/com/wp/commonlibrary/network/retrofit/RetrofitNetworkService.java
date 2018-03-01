@@ -1,14 +1,14 @@
 package com.wp.commonlibrary.network.retrofit;
 
 import com.wp.commonlibrary.basemvp.IView;
-import com.wp.commonlibrary.network.DefaultResponseCallBack;
+import com.wp.commonlibrary.network.callback.DefaultResponseCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
-import com.wp.commonlibrary.network.FileCallBack;
+import com.wp.commonlibrary.network.callback.FileCallBack;
 import com.wp.commonlibrary.network.INetWorkService;
-import com.wp.commonlibrary.network.IResponseCallBack;
+import com.wp.commonlibrary.network.callback.IResponseCallBack;
 import com.wp.commonlibrary.network.Params;
-import com.wp.commonlibrary.network.ProgressInterceptor;
-import com.wp.commonlibrary.network.ProgressManager;
+import com.wp.commonlibrary.network.progress.ProgressInterceptor;
+import com.wp.commonlibrary.network.progress.ProgressManager;
 import com.wp.commonlibrary.rx.NetworkDefaultObserver;
 import com.wp.commonlibrary.rx.ThreadTransformer;
 import com.wp.commonlibrary.utils.FileIOUtils;
