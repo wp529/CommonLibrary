@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private void downloadFile() {
         File file = new File(CommonApplication.context.getCacheDir(), System.currentTimeMillis() + ".apk");
-        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, true, new ChangeViewWithProgressListener(tvExample));
+        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, new ChangeViewWithProgressListener(tvExample));
         mPresenter.downloadFile(downloadFile);
     }
 

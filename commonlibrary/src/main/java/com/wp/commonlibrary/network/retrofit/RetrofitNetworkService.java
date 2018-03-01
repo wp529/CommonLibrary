@@ -116,7 +116,7 @@ public class RetrofitNetworkService implements INetWorkService {
                 .subscribe(new NetworkDefaultObserver<>(view, new DefaultResponseCallBack<File>() {
                     @Override
                     public void onStart(IView view) {
-                        view.showLoading(downloadFile.isCancelable());
+
                     }
 
                     @Override
