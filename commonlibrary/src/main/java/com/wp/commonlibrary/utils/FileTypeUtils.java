@@ -54,8 +54,9 @@ public final class FileTypeUtils {
      * 方法描述：根据文件路径获取文件头信息
      */
     private static String getFileHeader(InputStream is) {
-        if(is == null)
+        if(is == null){
             return null;
+        }
         String value = null;
         try {
             byte[] b = new byte[4];

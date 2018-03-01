@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 import com.wp.commonlibrary.R;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
-import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.views.ProgressPhotoView;
 
 /**
@@ -40,22 +39,26 @@ public class ImagesPreviewPagerAdapter extends PagerAdapter {
         ProgressPhotoView image = (ProgressPhotoView) view.findViewById(R.id.common_library_images_preview_image);
         RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.common_library_images_preview_item_container);
         layout.setOnClickListener(v -> {
-            if (listener != null)
+            if (listener != null) {
                 listener.onPageClick(position);
+            }
         });
         image.setOnClickListener(v -> {
-            if (listener != null)
+            if (listener != null) {
                 listener.onPageClick(position);
+            }
         });
         layout.setOnLongClickListener(v -> {
-            if (listener != null)
+            if (listener != null) {
                 listener.onPageLongClick(position);
+            }
             return false;
         });
 
         image.setOnLongClickListener(v -> {
-            if (listener != null)
+            if (listener != null) {
                 listener.onPageLongClick(position);
+            }
             return false;
         });
         ImageHelper.getDefault().loadImage(context, new DownloadImage.Builder()
@@ -92,8 +95,18 @@ public class ImagesPreviewPagerAdapter extends PagerAdapter {
     }
 
     public interface OnPageClickListener {
+        /**
+         * 页面单击
+         *
+         * @param position 当前点击的页面
+         */
         void onPageClick(int position);
 
+        /**
+         * 页面长按
+         *
+         * @param position 当前长按的页面
+         */
         void onPageLongClick(int position);
     }
 }

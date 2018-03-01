@@ -1,8 +1,8 @@
 package com.wp.common;
 
 
-import com.wp.commonlibrary.baseMVP.BasePresenter;
-import com.wp.commonlibrary.baseMVP.IView;
+import com.wp.commonlibrary.basemvp.BasePresenter;
+import com.wp.commonlibrary.basemvp.IView;
 import com.wp.commonlibrary.network.DefaultResponseCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.FileCallBack;

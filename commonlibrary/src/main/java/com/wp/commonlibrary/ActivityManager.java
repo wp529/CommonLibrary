@@ -106,7 +106,7 @@ public class ActivityManager {
     /**
      * 退出应用程序
      */
-    public void AppExit(Context context) {
+    public void appExit() {
         finishAllActivity();
         System.exit(0);
     }

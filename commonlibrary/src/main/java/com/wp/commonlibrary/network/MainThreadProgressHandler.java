@@ -23,20 +23,26 @@ public class MainThreadProgressHandler extends Handler {
     public void handleMessage(Message msg) {
         switch (msg.what) {
             case START:
-                if (event != null)
+                if (event != null) {
                     event.start((Long) msg.obj);
+                }
                 break;
             case UPDATE:
-                if (event != null)
+                if (event != null) {
                     event.updateProgress((Integer) msg.obj);
+                }
                 break;
             case END:
-                if (event != null)
+                if (event != null) {
                     event.end();
+                }
                 break;
             case CANCEL:
-                if (event != null)
+                if (event != null) {
                     event.cancel();
+                }
+                break;
+            default:
                 break;
         }
     }

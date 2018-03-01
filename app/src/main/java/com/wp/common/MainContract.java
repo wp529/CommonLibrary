@@ -1,8 +1,8 @@
 package com.wp.common;
 
 
-import com.wp.commonlibrary.baseMVP.IPresenter;
-import com.wp.commonlibrary.baseMVP.IView;
+import com.wp.commonlibrary.basemvp.IPresenter;
+import com.wp.commonlibrary.basemvp.IView;
 import com.wp.commonlibrary.network.DownloadFile;
 
 import java.io.File;

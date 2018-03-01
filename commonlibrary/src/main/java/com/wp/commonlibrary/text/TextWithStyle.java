@@ -20,7 +20,7 @@ public class TextWithStyle {
         this.color = color;
     }
 
-    public boolean HasDeleteLine() {
+    public boolean hasDeleteLine() {
         return hasDeleteLine;
     }
 

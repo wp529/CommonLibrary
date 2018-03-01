@@ -1,13 +1,13 @@
-package com.wp.commonlibrary.permission.rxPermission;
+package com.wp.commonlibrary.permission.rxpermission;
 
 import android.app.Activity;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.wp.commonlibrary.permission.PermissionCallBack;
 import com.wp.commonlibrary.permission.PermissionService;
-import com.wp.commonlibrary.utils.LogUtils;
 
 /**
+ * RxPermission实现权限请求
  * Created by WangPing on 2018/2/5.
  */
 

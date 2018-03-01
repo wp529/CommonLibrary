@@ -22,6 +22,13 @@ public abstract class AllowDeniedPermissionCallBack extends CommonPermissionCall
         super(context);
     }
 
+    /**
+     * 权限允许
+     *
+     * @param context 上下文
+     * @param result  请求结果 一般用于存储权限允许后构造的路径
+     */
+    @Override
     public abstract void granted(Context context, String result);
 
     @Override

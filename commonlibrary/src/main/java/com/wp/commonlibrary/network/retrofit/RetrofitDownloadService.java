@@ -11,6 +11,11 @@ import retrofit2.http.Url;
  * Created by WangPing on 2018/1/26.
  */
  interface RetrofitDownloadService {
+    /**
+     * 文件下载
+     * @param url 下载文件的网络路径
+     * @return Observable
+     */
     @Streaming
     @GET
     Observable<ResponseBody> download(@Url String url);

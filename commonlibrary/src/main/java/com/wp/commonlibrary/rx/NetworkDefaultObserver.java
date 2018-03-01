@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.R;
-import com.wp.commonlibrary.baseMVP.IView;
+import com.wp.commonlibrary.basemvp.IView;
 import com.wp.commonlibrary.network.INetworkError;
 import com.wp.commonlibrary.network.IResponseCallBack;
 

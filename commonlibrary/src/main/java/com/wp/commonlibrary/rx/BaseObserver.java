@@ -18,9 +18,19 @@ public abstract class BaseObserver<T> implements Observer<T> {
         subscribe(d);
     }
 
+    /**
+     * 操作成功
+     *
+     * @param t 成功的结果
+     */
     @Override
     public abstract void onNext(T t);
 
+    /**
+     * 操作失败
+     *
+     * @param e 失败的原因
+     */
     @Override
     public abstract void onError(Throwable e);
 
@@ -30,7 +40,15 @@ public abstract class BaseObserver<T> implements Observer<T> {
         complete();
     }
 
+    /**
+     * 订阅关系建立
+     *
+     * @param d Disposable
+     */
     public abstract void subscribe(Disposable d);
 
+    /**
+     * 处理完成
+     */
     public abstract void complete();
 }

@@ -6,11 +6,31 @@ package com.wp.commonlibrary.network;
  */
 
 public interface ProgressListener {
+    /**
+     * 网络请求开始
+     *
+     * @param totalLength 总长度
+     */
     void onStart(long totalLength);
 
+    /**
+     * 网络请求进度更新
+     *
+     * @param progress 进度百分比
+     */
     void onProgress(int progress);
 
+    /**
+     * 网络请求结束
+     *
+     * @param url 请求url
+     */
     void onEnd(String url);
 
+    /**
+     * 网络请求取消
+     *
+     * @param url 请求url
+     */
     void cancel(String url);
 }

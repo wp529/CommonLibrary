@@ -32,6 +32,9 @@ public class ImagesPreviewActivity extends Activity {
     private static final String TAG = ImagesPreviewActivity.class.getName();
     private static final String PREVIEW_IMAGES = "common_library_preview_images";
     private static final String CURRENT_INDEX = "common_library_preview_current_index";
+    private static final String JPEG = ".jpg";
+    private static final String PNG = ".png";
+    private static final String DOT = ".";
     private ImagesPreviewViewPager container;
     private TextView indicate, save;
     private RelativeLayout bottomLayout;
@@ -115,14 +118,14 @@ public class ImagesPreviewActivity extends Activity {
             private String buildCorrectImageName(String name) {
                 LogUtils.v(TAG, "缓存的文件名: " + name);
                 String result;
-                if (name.endsWith(".jpg") || name.endsWith(".png")) {
+                if (name.endsWith(JPEG) || name.endsWith(PNG)) {
                     result = name;
                 } else {
-                    if (name.contains(".")) {
-                        int i = name.lastIndexOf(".");
-                        result = name.substring(0, i) + ".jpg";
+                    if (name.contains(DOT)) {
+                        int i = name.lastIndexOf(DOT);
+                        result = name.substring(0, i) + JPEG;
                     } else {
-                        result = name + ".jpg";
+                        result = name + JPEG;
                     }
                 }
                 LogUtils.v(TAG, "保存至外部存储的文件名: " + result);

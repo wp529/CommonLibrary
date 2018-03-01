@@ -6,5 +6,12 @@ package com.wp.commonlibrary.network;
  */
 
 public interface INetworkResultConvert {
-    Object convert(String result, Class<? extends Object> convertTo);
+    /**
+     * 请求结果转换
+     *
+     * @param result    请求结果
+     * @param convertTo 需转换成的实体类
+     * @return 转换结果
+     */
+    Object convert(String result, Class<?> convertTo);
 }

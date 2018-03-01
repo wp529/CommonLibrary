@@ -1,7 +1,7 @@
 package com.wp.commonlibrary.network;
 
 
-import com.wp.commonlibrary.baseMVP.IView;
+import com.wp.commonlibrary.basemvp.IView;
 
 /**
  * 网络请求回调
@@ -9,7 +9,10 @@ import com.wp.commonlibrary.baseMVP.IView;
  */
 
 public abstract class DefaultResponseCallBack<K> implements IResponseCallBack<K> {
-
+    /**
+     * 网络请求成功回调
+     * @param result 网络请求结果
+     */
     @Override
     public abstract void success(K result);
 

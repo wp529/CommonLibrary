@@ -6,5 +6,10 @@ package com.wp.commonlibrary;
  */
 
 public interface IApplication {
+    /**
+     * onCreate
+     *
+     * @param application application
+     */
     void onCreate(CommonApplication application);
 }

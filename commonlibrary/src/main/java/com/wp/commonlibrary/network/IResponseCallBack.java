@@ -1,6 +1,6 @@
 package com.wp.commonlibrary.network;
 
-import com.wp.commonlibrary.baseMVP.IView;
+import com.wp.commonlibrary.basemvp.IView;
 
 /**
  * 发起请求时的回调接口
@@ -18,7 +18,7 @@ public interface IResponseCallBack<K> {
     /**
      * 请求发起前可做的操作,加载框是否可以取消之类的
      *
-     * @param view
+     * @param view IView
      */
     void onStart(IView view);
 }

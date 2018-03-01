@@ -20,7 +20,7 @@ class StringConverterFactory extends Converter.Factory {
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
         if (String.class.equals(type)) {
-            return (Converter<ResponseBody, String>) value -> value.string();
+            return (Converter<ResponseBody, String>) ResponseBody::string;
         }
         return null;
     }

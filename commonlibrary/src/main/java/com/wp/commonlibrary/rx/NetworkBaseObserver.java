@@ -1,12 +1,11 @@
 package com.wp.commonlibrary.rx;
 
 
-import com.wp.commonlibrary.baseMVP.IView;
+import com.wp.commonlibrary.basemvp.IView;
 import com.wp.commonlibrary.network.INetworkError;
 import com.wp.commonlibrary.network.INetworkResultConvert;
 import com.wp.commonlibrary.network.IResponseCallBack;
 import com.wp.commonlibrary.network.NetworkHelper;
-import com.wp.commonlibrary.utils.GsonUtils;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.utils.NetworkUtils;
 
@@ -45,8 +44,10 @@ public class NetworkBaseObserver<T, K> extends BaseObserver<T> {
     @Override
     public void onNext(@NonNull T t) {
         try {
-            Class<?> observerClass = t.getClass(); //observer的泛型
-            Class callBackClass = (Class) ((ParameterizedType) callBack.getClass().getGenericSuperclass()).getActualTypeArguments()[0];//callBack的泛型
+            //observer的泛型
+            Class<?> observerClass = t.getClass();
+            //callBack的泛型
+            Class callBackClass = (Class) ((ParameterizedType) callBack.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
             if (observerClass == callBackClass) {
                 K k = (K) t;
                 callBack.success(k);
@@ -70,7 +71,7 @@ public class NetworkBaseObserver<T, K> extends BaseObserver<T> {
     public void onError(@NonNull Throwable e) {
         view.dismissLoading();
         if (NetworkUtils.isConnected()) {
-            if (e.toString().contains("SocketTimeoutException")) { //请求超时
+            if (e.toString().contains("SocketTimeoutException")) {
                 networkError.connectTimeOut(view);
             } else { //请求失败
                 networkError.connectFail(view);

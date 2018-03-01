@@ -16,10 +16,23 @@ import retrofit2.http.QueryMap;
  */
 
 interface RetrofitRequestService {
-
+    /**
+     * Retrofit get请求
+     *
+     * @param subUrl 子路径
+     * @param params 请求参数
+     * @return Observable
+     */
     @GET("{subUrl}")
     Observable<String> get(@Path("subUrl") String subUrl, @QueryMap Map<String, Object> params);
 
+    /**
+     * Retrofit post请求
+     *
+     * @param subUrl 子路径
+     * @param params 请求参数
+     * @return Observable
+     */
     @FormUrlEncoded
     @POST("{subUrl}")
     Observable<String> post(@Path("subUrl") String subUrl, @FieldMap Map<String, Object> params);

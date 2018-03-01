@@ -11,8 +11,18 @@ public abstract class CommonPermissionCallBack implements PermissionCallBack {
     protected String result = "success";
     protected Context context;
 
+    /**
+     * 权限允许
+     * @param context 上下文
+     * @param result 请求结果 一般用于存储权限允许后构造的路径
+     */
     public abstract void granted(Context context, String result);
 
+    /**
+     * 权限拒绝
+     * @param context 上下文
+     * @param permission 被拒绝的权限
+     */
     public abstract void denied(Context context, String permission);
 
 

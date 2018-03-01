@@ -2,7 +2,7 @@ package com.wp.commonlibrary.network;
 
 import android.text.TextUtils;
 
-import com.wp.commonlibrary.baseMVP.IView;
+import com.wp.commonlibrary.basemvp.IView;
 import com.wp.commonlibrary.network.retrofit.RetrofitNetworkService;
 
 /**
@@ -53,8 +53,9 @@ public class NetworkHelper {
     }
 
     public INetworkResultConvert getConvert() {
-        if (this.convert == null)
+        if (this.convert == null){
             this.convert = new JsonConvert();
+        }
         return this.convert;
     }
 

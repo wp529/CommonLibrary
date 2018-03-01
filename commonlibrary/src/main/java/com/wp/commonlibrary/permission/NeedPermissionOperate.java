@@ -13,7 +13,7 @@ import java.io.File;
 
 public final class NeedPermissionOperate {
     private static NeedPermissionOperate operate;
-    private String EXTERNAL_STORAGE_ROOT = Environment.getExternalStorageDirectory() + File.separator;
+    private String externalStorageRoot = Environment.getExternalStorageDirectory() + File.separator;
 
     private NeedPermissionOperate() {
     }
@@ -33,10 +33,9 @@ public final class NeedPermissionOperate {
      * 获取外部存储卡路径
      *
      * @param subPath 子路径
-     * @return 构建好的路径
      */
     public void buildSafeExternalStoragePath(Activity activity, String subPath, CommonPermissionCallBack callBack) {
-        StringBuilder builder = new StringBuilder(EXTERNAL_STORAGE_ROOT);
+        StringBuilder builder = new StringBuilder(externalStorageRoot);
         builder.append(subPath);
         callBack.setResult(builder.toString());
         if (!hadPermission(activity, Permission.externalStoragePermission()) && needRequestPermission()) {

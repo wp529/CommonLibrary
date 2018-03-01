@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
-import com.wp.commonlibrary.baseMVP.BaseActivity;
+import com.wp.commonlibrary.basemvp.BaseActivity;
 import com.wp.commonlibrary.dialog.DialogOperateAdapter;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
@@ -23,8 +23,7 @@ import com.wp.commonlibrary.permission.MustGrantPermissionCallBack;
 import com.wp.commonlibrary.permission.NeedPermissionOperate;
 import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionHelper;
-import com.wp.commonlibrary.utils.APKUtils;
-import com.wp.commonlibrary.utils.FileTypeUtils;
+import com.wp.commonlibrary.utils.ApkUtils;
 import com.wp.commonlibrary.utils.LogUtils;
 import com.wp.commonlibrary.utils.ToastUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
@@ -92,7 +91,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void downloadFileSuccess(File file) {
-        if (APKUtils.APKCanInstall(file)) {
+        if (ApkUtils.apkCanInstall(file)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri data;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

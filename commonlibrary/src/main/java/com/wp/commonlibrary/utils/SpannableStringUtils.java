@@ -1,6 +1,5 @@
 package com.wp.commonlibrary.utils;
 
-import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -29,12 +28,15 @@ public final class SpannableStringUtils {
             currentEnd += text.getContent().length();
             ForegroundColorSpan colorSpan = new ForegroundColorSpan(text.getColor());
             spannableString.setSpan(colorSpan, currentStart, currentEnd, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            if (text.getTypeface() != -1)
+            if (text.getTypeface() != -1) {
                 spannableString.setSpan(new StyleSpan(text.getTypeface()), currentStart, currentEnd, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            if (text.HasDeleteLine())
+            }
+            if (text.hasDeleteLine()) {
                 spannableString.setSpan(new StrikethroughSpan(), currentStart, currentEnd, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-            if (text.hasUnderLine())
+            }
+            if (text.hasUnderLine()) {
                 spannableString.setSpan(new UnderlineSpan(), currentStart, currentEnd, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            }
             currentStart += text.getContent().length();
         }
         return spannableString;

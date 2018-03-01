@@ -1,6 +1,6 @@
 package com.wp.commonlibrary.network.retrofit;
 
-import com.wp.commonlibrary.baseMVP.IView;
+import com.wp.commonlibrary.basemvp.IView;
 import com.wp.commonlibrary.network.DefaultResponseCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.FileCallBack;
@@ -65,10 +65,15 @@ public class RetrofitNetworkService implements INetWorkService {
                 .subscribe(new NetworkDefaultObserver<>(view, callBack));
     }
 
-    //处理请求入参
+    /**
+     * 处理入参
+     * @param params 入参
+     * @return 处理后的参数
+     */
     private Params handleParams(Params params) {
-        if (params == null)
+        if (params == null){
             params = new Params();
+        }
         params.param("", "");
         return params;
     }
@@ -92,12 +97,14 @@ public class RetrofitNetworkService implements INetWorkService {
 
     @Override
     public void download(IView view, DownloadFile downloadFile, FileCallBack callBack) {
-        ProgressManager.addListener(downloadFile.getUrl(), downloadFile.getListener()); //监听进度
+        //监听进度
+        ProgressManager.addListener(downloadFile.getUrl(), downloadFile.getListener());
         downloadService.download(downloadFile.getUrl())
                 .map(responseBody -> {
                     File file = downloadFile.getFile();
-                    if (file == null)
+                    if (file == null){
                         throw new IllegalArgumentException("下载文件不能为空");
+                    }
 
                     if (FileIOUtils.writeFileFromIS(file, responseBody.byteStream())) {
                         return file;

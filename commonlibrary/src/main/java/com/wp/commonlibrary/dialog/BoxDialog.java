@@ -52,8 +52,9 @@ public class BoxDialog {
     }
 
     public void show(Context context) {
-        if (dialog != null && dialog.isShowing())
+        if (dialog != null && dialog.isShowing()) {
             return;
+        }
         if (dialog != null) {
             dialog.show();
             return;
@@ -86,12 +87,12 @@ public class BoxDialog {
             title.setVisibility(View.VISIBLE);
             title.setText(this.title);
         }
-        if (TextUtils.isEmpty(this.content) && (this.contents == null || this.contents.length == 0)) {
-            //没有设置字符串或者TextWithColor
+        if (contentIsEmpty()) {
+            //没有设置内容
             content.setVisibility(View.GONE);
         } else {
             content.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(this.content)) { //设置了字符串
+            if (!TextUtils.isEmpty(this.content)) {
                 content.setText(this.content);
             } else { //设置了TextWithColor
                 content.setText(SpannableStringUtils.makeSpannableString(this.contents));
@@ -99,25 +100,31 @@ public class BoxDialog {
         }
 
         positive.setText(this.positiveText);
-        if (!isSingleButton)
+        if (!isSingleButton) {
             negative.setText(this.negativeText);
+        }
         //设置颜色
-        if (this.titleColor != 0)
+        if (this.titleColor != 0) {
             title.setTextColor(this.titleColor);
-        if (this.contentColor != 0)
+        }
+        if (this.contentColor != 0) {
             content.setTextColor(this.contentColor);
-        if (this.positiveColor != 0)
+        }
+        if (this.positiveColor != 0) {
             positive.setTextColor(this.positiveColor);
-        if (this.negativeColor != 0 && !isSingleButton)
+        }
+        if (this.negativeColor != 0 && !isSingleButton) {
             negative.setTextColor(this.negativeColor);
+        }
         //设置返回
         dialog.setCancelable(this.isCancelable);
         dialog.setCanceledOnTouchOutside(this.isCancelableTouchOutside);
         //设置监听
         positive.setOnClickListener(v -> {
             dialog.dismiss();
-            if (this.listener != null)
+            if (this.listener != null) {
                 listener.positive(context, dialog);
+            }
         });
         if (!isSingleButton) {
             negative.setOnClickListener(v -> {
@@ -133,6 +140,10 @@ public class BoxDialog {
             }
         });
         dialog.show();
+    }
+
+    private boolean contentIsEmpty() {
+        return TextUtils.isEmpty(this.content) && (this.contents == null || this.contents.length == 0);
     }
 
     public static class Builder {

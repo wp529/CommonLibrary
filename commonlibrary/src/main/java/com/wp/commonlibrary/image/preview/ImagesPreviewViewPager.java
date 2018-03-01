@@ -137,6 +137,9 @@ public class ImagesPreviewViewPager extends ViewPager {
                     mTouchState = TouchState.MORE_TOUCH;
                 }
                 break;
+            default:
+                LogUtils.e(TAG, "MotionEvent " + actionMask);
+                break;
         }
         //除了纵向触摸，其他都由父类的super.dispatchTouchEvent(ev)处理
         if (mTouchState == TouchState.VERTICAL_MOVE) {
@@ -247,33 +250,54 @@ public class ImagesPreviewViewPager extends ViewPager {
     /**
      * Interpolator defining the animation curve for mScroller
      */
-    private static final Interpolator sInterpolator = new Interpolator() {
-        @Override
-        public float getInterpolation(float t) {
-            t -= 1f;
-            return t * t * t * t * t + 1f;
-        }
+    private static final Interpolator sInterpolator = t -> {
+        t -= 1f;
+        return t * t * t * t * t + 1f;
     };
 
     public interface OnPositionChangeListener {
-
+        /**
+         * ViewPager触发移动
+         *
+         * @param initTop initTop
+         * @param nowTop  nowTop
+         * @param ratio   ratio
+         */
         void onPositionChange(int initTop, int nowTop, float ratio);
 
+        /**
+         * ViewPager触发FlingOut
+         */
         void onFlingOutFinish();
     }
 
     public interface DisallowInterruptHandler {
-
+        /**
+         * 是否不允许打断
+         *
+         * @return 是否
+         */
         boolean disallowInterrupt();
 
     }
 
     public enum TouchState {
-        NONE,//普通状态
-        DISALLOW_INTERRUPT,//不允许拦截
-        HORIZONTAL_MOVE,//横滑动
-        VERTICAL_MOVE,//竖滑动
-        MORE_TOUCH//多点触摸
+        /**
+         * 普通状态
+         */
+        NONE,
+        /**
+         * 横滑动
+         */
+        HORIZONTAL_MOVE,
+        /**
+         * 竖滑动
+         */
+        VERTICAL_MOVE,
+        /**
+         * 多点触摸
+         */
+        MORE_TOUCH
     }
 
 }

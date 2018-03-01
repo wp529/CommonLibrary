@@ -64,17 +64,20 @@ public class GlideService implements IImageService {
                         return false;
                     }
                 });
-        if (!image.isAnimate())
+        if (!image.isAnimate()) {
             loader.dontAnimate();
+        }
         if (!image.isDiskCache()) {
             loader.diskCacheStrategy(DiskCacheStrategy.NONE);
         } else {
             loader.diskCacheStrategy(DiskCacheStrategy.ALL);
         }
-        if (image.getTrans() != null)
+        if (image.getTrans() != null) {
             loader.transform(image.getTrans());
-        if (image.getAnimator() != null)
+        }
+        if (image.getAnimator() != null) {
             loader.animate(image.getAnimator());
+        }
         loader.into(image.getImageView());
     }
 

@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.baseMVP;
+package com.wp.commonlibrary.basemvp;
 
 import com.wp.commonlibrary.rx.ObservableManager;
 

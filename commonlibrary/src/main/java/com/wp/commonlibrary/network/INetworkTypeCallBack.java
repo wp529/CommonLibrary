@@ -1,6 +1,7 @@
 package com.wp.commonlibrary.network;
 
 /**
+ * 网络类型回调
  * Created by WangPing on 2018/2/11.
  */
 
@@ -12,7 +13,15 @@ public interface INetworkTypeCallBack {
     int NETWORK_UNKNOWN = 0x00010000;
     int NETWORK_NO = 0x00100000;
 
+    /**
+     * 网络状态为WiFi
+     * @param netType 网络状态
+     */
     void wifi(int netType);
 
+    /**
+     * 网络状态为其他类型
+     * @param netType 网络状态
+     */
     void other(int netType);
 }

@@ -1,8 +1,6 @@
 package com.wp.commonlibrary.image;
 
-import android.content.Context;
 import android.os.AsyncTask;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.wp.commonlibrary.CommonApplication;

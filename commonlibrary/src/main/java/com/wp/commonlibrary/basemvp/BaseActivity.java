@@ -1,4 +1,4 @@
-package com.wp.commonlibrary.baseMVP;
+package com.wp.commonlibrary.basemvp;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -37,10 +37,20 @@ public abstract class BaseActivity<T extends IPresenter> extends Activity implem
         ActivityManager.getActivityManager().addActivity(this);
     }
 
+    /**
+     * 实例化控件对象 findViewByIid()
+     */
     protected abstract void findView();
 
+    /**
+     * activity的布局文件
+     * @return 布局文件资源
+     */
     protected abstract int layoutId();
 
+    /**
+     * dagger2的注入
+     */
     protected abstract void inject();
 
     protected View findView(@IdRes int id) {

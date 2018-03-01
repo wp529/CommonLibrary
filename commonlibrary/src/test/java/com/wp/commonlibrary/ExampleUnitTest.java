@@ -1,12 +1,6 @@
 package com.wp.commonlibrary;
 
-import com.wp.commonlibrary.utils.APKUtils;
-
 import org.junit.Test;
-
-import java.io.File;
-
-import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

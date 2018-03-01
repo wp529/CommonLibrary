@@ -1,10 +1,7 @@
 package com.wp.commonlibrary.network;
 
 
-import android.app.Dialog;
 import android.content.Context;
-
-import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.dialog.BoxDialog;
 import com.wp.commonlibrary.dialog.DialogHelper;
 import com.wp.commonlibrary.dialog.IDialogOperateListener;
@@ -22,6 +19,10 @@ public abstract class DefaultNetworkTypeCallBack implements INetworkTypeCallBack
         this.context = context;
     }
 
+    /**
+     * 网络状态为WiFi
+     * @param netType 网络状态
+     */
     @Override
     public abstract void wifi(int netType);
 

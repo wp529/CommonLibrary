@@ -2,7 +2,7 @@ package com.wp.commonlibrary.permission;
 
 import android.app.Activity;
 
-import com.wp.commonlibrary.permission.rxPermission.RxPermissionService;
+import com.wp.commonlibrary.permission.rxpermission.RxPermissionService;
 
 /**
  * 权限使用入口
