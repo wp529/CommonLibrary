@@ -19,6 +19,7 @@
 * 图片使用Glide
 * 权限使用RxPermission
 * 图片预览类今日头条效果，是个完整的组件
+
 ###依赖步骤
 没有将module打为aar文件，因为这样需要改代码方便很多，本来也是一个公共库组件，以module形式依赖感觉更好。
 1. 去[github](https://github.com/wp529/CommonLibrary)下载完整代码，包含commonlibrary和demo
