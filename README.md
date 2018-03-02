@@ -1,6 +1,8 @@
 使用 [Blankj](https://github.com/Blankj/AndroidUtilCode)大神的部分工具类
 
 使用介绍[CSDN](http://blog.csdn.net/pzhu_lcx/article/category/7478039)
+
+经测试，目前module导入项目中打包会增加apk <strong>1.34M体积</strong>
 ##### 此库目前包含有
 
 * 网络请求
