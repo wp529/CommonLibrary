@@ -81,21 +81,17 @@ public class ProgressResponseBody extends ResponseBody {
                 e.printStackTrace();
                 LogUtils.e(e.getMessage());
                 if (listener != null && TextUtils.equals("Socket closed", e.getMessage())) {
-                    //maybe cancel request
-                    listener.cancel(url);
-                    listener = null;
-                    ProgressManager.removeListener(url);
+                    cancelRequest();
+                } else if (listener != null && TextUtils.equals("thread interrupted", e.getMessage())) {
+                    cancelRequest();
                 } else if (listener != null && TextUtils.equals("Software caused connection abort", e.getMessage())) {
-                    //网络连接中断
-                    listener.networkInterrupt(url);
-                    listener = null;
-                    ProgressManager.removeListener(url);
+                    interruptConnect();
                 }
                 return bytesRead;
             }
             long fullLength = responseBody.contentLength();
             if (listener != null && totalBytesRead == 0) {
-                listener.onStart(fullLength);
+                listener.onStart(url, fullLength);
             }
             if (bytesRead == -1) {
                 totalBytesRead = fullLength;
@@ -114,6 +110,18 @@ public class ProgressResponseBody extends ResponseBody {
             }
             currentProgress = progress;
             return bytesRead;
+        }
+
+        private void interruptConnect() {
+            listener.networkInterrupt(url);
+            listener = null;
+            ProgressManager.removeListener(url);
+        }
+
+        private void cancelRequest() {
+            listener.cancel(url);
+            listener = null;
+            ProgressManager.removeListener(url);
         }
     }
 

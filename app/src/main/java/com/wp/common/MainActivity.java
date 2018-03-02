@@ -49,6 +49,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void findView() {
         ivExample = (ProgressImageView) findView(R.id.iv_example);
         tvExample = (TestTextView) findView(R.id.tv_example);
+        tvExample.setOnClickListener(v -> {
+            LogUtils.e("被点击了");
+            tvExample.cancelDownload();
+        });
     }
 
     @Override

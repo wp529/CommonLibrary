@@ -56,7 +56,7 @@ public class ProgressPhotoView extends PhotoView implements IViewProgressEvent {
         mOval = new RectF(mCenterX - mRadius, mCenterY - mRadius, mCenterX
                 + mRadius, mCenterY + mRadius);
     }
-
+    @Override
     public void onDraw(Canvas canvas) {
         if (mShowProgress) {
             if (mCenterX == 0 || mCenterY == 0) {
@@ -91,7 +91,7 @@ public class ProgressPhotoView extends PhotoView implements IViewProgressEvent {
     }
 
     @Override
-    public void start(long totalLength) {
+    public void start(String url, long totalLength) {
         mShowProgress = true;
         setProgress(0);
         LogUtils.v(TAG, "图片下载开始");

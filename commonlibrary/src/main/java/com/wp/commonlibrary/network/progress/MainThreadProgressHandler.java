@@ -1,5 +1,6 @@
 package com.wp.commonlibrary.network.progress;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
@@ -14,6 +15,8 @@ public class MainThreadProgressHandler extends Handler {
     public static final int END = 0X0000100;
     public static final int CANCEL = 0X0001000;
     public static final int INTERRUPT = 0X0010000;
+    public static final String TOTAL_LENGTH = "totalLength";
+    public static final String URL = "url";
     private IMainThreadProgressEvent event;
 
     public MainThreadProgressHandler(IMainThreadProgressEvent listener) {
@@ -25,7 +28,8 @@ public class MainThreadProgressHandler extends Handler {
         switch (msg.what) {
             case START:
                 if (event != null) {
-                    event.start((Long) msg.obj);
+                    Bundle bundle = msg.getData();
+                    event.start(bundle.getString(URL), bundle.getLong(TOTAL_LENGTH));
                 }
                 break;
             case UPDATE:

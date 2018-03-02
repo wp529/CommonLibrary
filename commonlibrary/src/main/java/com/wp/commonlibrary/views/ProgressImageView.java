@@ -55,6 +55,7 @@ public class ProgressImageView extends android.support.v7.widget.AppCompatImageV
         mOval = new RectF(mCenterX - mRadius, mCenterY - mRadius, mCenterX
                 + mRadius, mCenterY + mRadius);
     }
+
     @Override
     public void onDraw(Canvas canvas) {
         if (mShowProgress) {
@@ -90,7 +91,7 @@ public class ProgressImageView extends android.support.v7.widget.AppCompatImageV
     }
 
     @Override
-    public void start(long totalLength) {
+    public void start(String url, long totalLength) {
         mShowProgress = true;
         setProgress(0);
         LogUtils.v(TAG, "图片下载开始");

@@ -15,8 +15,8 @@ public class ChangeViewWithProgressListener extends MainThreadProgressListener {
     }
 
     @Override
-    public void start(long totalLength) {
-        event.start(totalLength);
+    public void start(String url, long totalLength) {
+        event.start(url, totalLength);
     }
 
     @Override

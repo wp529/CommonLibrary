@@ -1,5 +1,6 @@
 package com.wp.commonlibrary.basemvp;
 
+import com.wp.commonlibrary.rx.DownloadObservableManager;
 import com.wp.commonlibrary.rx.ObservableManager;
 
 /**
@@ -19,6 +20,7 @@ public class BasePresenter<T extends IView> implements IPresenter<T> {
     public void detachView(T view) {
         //当此页面不可见时的操作
         ObservableManager.getInstance().stopObserver();
+        DownloadObservableManager.getInstance().stopAllObserver();
         view.dismissLoading();
     }
 }

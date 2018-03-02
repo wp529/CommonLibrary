@@ -9,9 +9,10 @@ public interface IMainThreadProgressEvent {
     /**
      * 网络请求开始
      *
+     * @param url         请求的地址
      * @param totalLength 请求总长度
      */
-    void start(long totalLength);
+    void start(String url, long totalLength);
 
     /**
      * 网络请求进度更新

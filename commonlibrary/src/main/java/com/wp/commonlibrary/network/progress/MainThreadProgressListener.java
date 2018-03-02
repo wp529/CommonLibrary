@@ -1,5 +1,6 @@
 package com.wp.commonlibrary.network.progress;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
@@ -17,10 +18,13 @@ public abstract class MainThreadProgressListener implements ProgressListener, IM
     }
 
     @Override
-    public void onStart(long totalLength) {
+    public void onStart(String url, long totalLength) {
         Message msg = Message.obtain();
         msg.what = MainThreadProgressHandler.START;
-        msg.obj = totalLength;
+        Bundle bundle = new Bundle();
+        bundle.putString(MainThreadProgressHandler.URL, url);
+        bundle.putLong(MainThreadProgressHandler.TOTAL_LENGTH, totalLength);
+        msg.setData(bundle);
         handler.sendMessage(msg);
     }
 

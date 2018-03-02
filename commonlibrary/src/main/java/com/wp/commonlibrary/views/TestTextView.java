@@ -3,6 +3,8 @@ package com.wp.commonlibrary.views;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.wp.commonlibrary.rx.DownloadObservableManager;
+import com.wp.commonlibrary.rx.ObservableManager;
 import com.wp.commonlibrary.utils.LogUtils;
 
 /**
@@ -10,6 +12,8 @@ import com.wp.commonlibrary.utils.LogUtils;
  */
 
 public class TestTextView extends android.support.v7.widget.AppCompatTextView implements IViewProgressEvent {
+    private String url;
+
     public TestTextView(Context context) {
         super(context);
     }
@@ -22,9 +26,14 @@ public class TestTextView extends android.support.v7.widget.AppCompatTextView im
         super(context, attrs, defStyleAttr);
     }
 
-    @Override
-    public void start(long totalLength) {
+    public void cancelDownload() {
+        DownloadObservableManager.getInstance().stopObserver(url);
+    }
 
+    @Override
+    public void start(String url, long totalLength) {
+        this.url = url;
+        LogUtils.e("start ", url);
     }
 
     @Override

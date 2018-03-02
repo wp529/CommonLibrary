@@ -9,9 +9,10 @@ public interface ProgressListener {
     /**
      * 网络请求开始
      *
+     * @param url         请求地址
      * @param totalLength 总长度
      */
-    void onStart(long totalLength);
+    void onStart(String url, long totalLength);
 
     /**
      * 网络请求进度更新

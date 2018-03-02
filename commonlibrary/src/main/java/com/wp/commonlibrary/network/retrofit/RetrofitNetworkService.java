@@ -9,13 +9,18 @@ import com.wp.commonlibrary.network.callback.IResponseCallBack;
 import com.wp.commonlibrary.network.Params;
 import com.wp.commonlibrary.network.progress.ProgressInterceptor;
 import com.wp.commonlibrary.network.progress.ProgressManager;
+import com.wp.commonlibrary.rx.BaseObserver;
+import com.wp.commonlibrary.rx.DownloadObservableManager;
 import com.wp.commonlibrary.rx.NetworkDefaultObserver;
+import com.wp.commonlibrary.rx.ObservableManager;
 import com.wp.commonlibrary.rx.ThreadTransformer;
 import com.wp.commonlibrary.utils.FileIOUtils;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -67,11 +72,12 @@ public class RetrofitNetworkService implements INetWorkService {
 
     /**
      * 处理入参
+     *
      * @param params 入参
      * @return 处理后的参数
      */
     private Params handleParams(Params params) {
-        if (params == null){
+        if (params == null) {
             params = new Params();
         }
         params.param("", "");
@@ -99,10 +105,10 @@ public class RetrofitNetworkService implements INetWorkService {
     public void download(IView view, DownloadFile downloadFile, FileCallBack callBack) {
         //监听进度
         ProgressManager.addListener(downloadFile.getUrl(), downloadFile.getListener());
-        downloadService.download(downloadFile.getUrl())
+        Disposable disposable = downloadService.download(downloadFile.getUrl())
                 .map(responseBody -> {
                     File file = downloadFile.getFile();
-                    if (file == null){
+                    if (file == null) {
                         throw new IllegalArgumentException("下载文件不能为空");
                     }
 
@@ -113,20 +119,14 @@ public class RetrofitNetworkService implements INetWorkService {
                     }
                 })
                 .compose(ThreadTransformer.io2main())
-                .subscribe(new NetworkDefaultObserver<>(view, new DefaultResponseCallBack<File>() {
-                    @Override
-                    public void onStart(IView view) {
-
+                .subscribe(file -> {
+                    if (file == null) {
+                        callBack.downloadFail(new Exception("文件IO有问题"));
+                    } else {
+                        callBack.downloadSuccess(file);
                     }
-
-                    @Override
-                    public void success(File result) {
-                        if (result == null) {
-                            callBack.downloadFail(new Exception("文件IO有问题"));
-                        } else {
-                            callBack.downloadSuccess(result);
-                        }
-                    }
-                }));
+                });
+        DownloadObservableManager.getInstance().addObservable(downloadFile.getUrl(), disposable);
+        ObservableManager.getInstance().addObservable(disposable);
     }
 }
