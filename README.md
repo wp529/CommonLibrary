@@ -1,5 +1,7 @@
 使用 [Blankj](https://github.com/Blankj/AndroidUtilCode)大神的部分工具类
-#####此库目前包含有
+
+使用介绍[CSDN](http://blog.csdn.net/pzhu_lcx/article/category/7478039)
+##### 此库目前包含有
 
 * 网络请求
 * 图片加载
@@ -9,14 +11,14 @@
 * 图片预览
 * 三方分享&登录
 
-#####每个功能组件都有默认实现，helper为入口，直接调用使用，使用接口暴露出服务，所以在更换底层框架时重新实现服务接口即可。
+##### 每个功能组件都有默认实现，helper为入口，直接调用使用，使用接口暴露出服务，所以在更换底层框架时重新实现服务接口即可。
 
 * 网络请求部分默认使用Okhttp,Retrofit,RxJava实现
 * 图片使用Glide
 * 权限使用RxPermission
 * 图片预览类今日头条效果，是个完整的组件
 
-#####示例代码
+##### 示例代码
 * 请求接口
 可在请求前全局设置网络请求结果的转换器,NetworkHelper.getDefault().setConvert(INetworkResultConvert convert);默认为json转实体类,可自行实现INetworkResultConvert接口,设置你想要的转换器,xml转换之类的。
 ```
@@ -38,7 +40,7 @@ NetworkHelper.getDefault().get(mView, "v2/movie/top250", params, new DefaultResp
 
 ```
 
-* 下载文件
+* 下载文件(断点下载,网速检测,下载进度)
 ```
 NeedWifiOperate.getDefault().networkTypeShouldBeWifi(new DefaultNetworkTypeCallBack(this) {
             @Override
@@ -53,8 +55,10 @@ NeedWifiOperate.getDefault().networkTypeShouldBeWifi(new DefaultNetworkTypeCallB
         }));
 
 private void downloadFile() {
-        File file = new File(CommonApplication.context.getCacheDir(), System.currentTimeMillis() + ".apk");
-        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, true, new ChangeViewWithProgressListener(tvExample));
+        String downloadUrl = "http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk";
+        File file = new File(CommonApplication.context.getCacheDir(), MD5Utils.MD5(downloadUrl) + ".apk");
+        LogUtils.e("DownloadFile: " + file.length());
+        DownloadFile downloadFile = new DownloadFile(downloadUrl, file.length(), file, new ChangeViewWithProgressListener(tvExample));
         mPresenter.downloadFile(downloadFile);
     }
 
