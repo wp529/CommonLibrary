@@ -17,6 +17,20 @@
 * 图片使用Glide
 * 权限使用RxPermission
 * 图片预览类今日头条效果，是个完整的组件
+###依赖步骤
+没有将module打为aar文件，因为这样需要改代码方便很多，本来也是一个公共库组件，以module形式依赖感觉更好。
+1. 去[github](https://github.com/wp529/CommonLibrary)下载完整代码，包含commonlibrary和demo
+2. Android Studio中File -> New -> Import Module选择下载的路径，选择commonlibrary文件夹然后finish，这时会报错，别慌张，按着下述步骤来。
+3. 将下载项目中的`dependencies.gradle`文件复制到项目的根目录，然后在根目录的build.gradle里按位置添加
+`apply from: "dependencies.gradle"`
+`classpath 'me.tatarka:gradle-retrolambda:3.6.1'`
+`maven { url "https://jitpack.io" }`
+![这里写图片描述](http://img.blog.csdn.net/20180302163733672?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcHpodV9sY3g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+然后点击Sync Now然后等着下载所需资源，下载完后应该就不会报错了，如果还有报错请联系我
+
+4.在你的项目build.gradle中添加`implementation project(':commonlibrary')`
+![这里写图片描述](http://img.blog.csdn.net/20180302164347646?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcHpodV9sY3g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+完成导入
 
 ##### 示例代码
 * 请求接口
