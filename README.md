@@ -20,7 +20,7 @@
 * 权限使用RxPermission
 * 图片预览类今日头条效果，是个完整的组件
 
-###依赖步骤
+##### 依赖步骤
 没有将module打为aar文件，因为这样需要改代码方便很多，本来也是一个公共库组件，以module形式依赖感觉更好。
 1. 去[github](https://github.com/wp529/CommonLibrary)下载完整代码，包含commonlibrary和demo
 2. Android Studio中File -> New -> Import Module选择下载的路径，选择commonlibrary文件夹然后finish，这时会报错，别慌张，按着下述步骤来。
