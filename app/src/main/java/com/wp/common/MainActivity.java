@@ -5,18 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.FileProvider;
 import android.view.View;
 
 import com.wp.common.dagger.DaggerActivityComponent;
 import com.wp.commonlibrary.CommonApplication;
 import com.wp.commonlibrary.basemvp.BaseActivity;
-import com.wp.commonlibrary.dialog.BoxDialog;
-import com.wp.commonlibrary.dialog.DialogHelper;
 import com.wp.commonlibrary.dialog.DialogOperateAdapter;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
 import com.wp.commonlibrary.image.preview.ImagesPreviewActivity;
+import com.wp.commonlibrary.network.netspeed.NetworkSpeed;
 import com.wp.commonlibrary.network.networktype.DefaultNetworkTypeCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.progress.ChangeViewWithProgressListener;
@@ -27,6 +28,7 @@ import com.wp.commonlibrary.permission.Permission;
 import com.wp.commonlibrary.permission.PermissionHelper;
 import com.wp.commonlibrary.utils.ApkUtils;
 import com.wp.commonlibrary.utils.LogUtils;
+import com.wp.commonlibrary.utils.MD5Utils;
 import com.wp.commonlibrary.utils.ToastUtils;
 import com.wp.commonlibrary.views.ProgressImageView;
 import com.wp.commonlibrary.views.TestTextView;
@@ -88,9 +90,21 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }));
     }
 
+    /**
+     * 暂停下载后重新下载已做了文件的追加,但文件路径必须一致,所以通常可以将url的md5做文件名
+     * 在重新下载时进度是未下载部分的百分比进度,所以你需要自行计算,计算方式为
+     * 重新开始时进度 = 已下载 / (已下载 + 未下载(重新下载时onStart会回传)) * 100%
+     * 重新下载时进度 = (已下载 + progress * 未下载) / (已下载 + 未下载(重新下载时onStart会回传)) * 100%
+     * <p>
+     * tips:    怎么判断是重新下载?    文件存在且file.length()大于0
+     * <p>
+     * 怎么获取已下载字节数?  file.length()
+     */
     private void downloadFile() {
-        File file = new File(CommonApplication.context.getCacheDir(), System.currentTimeMillis() + ".apk");
-        DownloadFile downloadFile = new DownloadFile("http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk", file, new ChangeViewWithProgressListener(tvExample));
+        String downloadUrl = "http://gdown.baidu.com/data/wisegame/13095bef5973a891/QQ_786.apk";
+        File file = new File(CommonApplication.context.getCacheDir(), MD5Utils.MD5(downloadUrl) + ".apk");
+        LogUtils.e("DownloadFile: " + file.length());
+        DownloadFile downloadFile = new DownloadFile(downloadUrl, file.length(), file, new ChangeViewWithProgressListener(tvExample));
         mPresenter.downloadFile(downloadFile);
     }
 

@@ -111,12 +111,12 @@ public class ProgressImageView extends android.support.v7.widget.AppCompatImageV
     }
 
     @Override
-    public void cancel() {
+    public void cancel(long downloaded) {
 
     }
 
     @Override
-    public void interrupt() {
+    public void interrupt(long downloaded) {
 
     }
 }

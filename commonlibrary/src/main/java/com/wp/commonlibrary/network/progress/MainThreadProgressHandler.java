@@ -44,12 +44,12 @@ public class MainThreadProgressHandler extends Handler {
                 break;
             case CANCEL:
                 if (event != null) {
-                    event.cancel();
+                    event.cancel((Long) msg.obj);
                 }
                 break;
             case INTERRUPT:
                 if (event != null) {
-                    event.interrupt();
+                    event.interrupt((Long) msg.obj);
                 }
             default:
                 break;

@@ -31,14 +31,16 @@ public interface ProgressListener {
     /**
      * 网络请求取消
      *
-     * @param url 请求url
+     * @param url        请求url
+     * @param downloaded 已下载字节数
      */
-    void cancel(String url);
+    void cancel(String url, long downloaded);
 
     /**
      * 网络连接中断
      *
-     * @param url 请求url
+     * @param url        请求url
+     * @param downloaded 已下载字节数
      */
-    void networkInterrupt(String url);
+    void networkInterrupt(String url, long downloaded);
 }

@@ -66,7 +66,7 @@ public class ProgressResponseBody extends ResponseBody {
                 return doRead(sink, byteCount);
             } else {
                 LogUtils.e(TAG, "没有网络连接");
-                listener.networkInterrupt(url);
+                listener.networkInterrupt(url, totalBytesRead);
                 listener = null;
                 ProgressManager.removeListener(url);
                 return -1;
@@ -113,13 +113,13 @@ public class ProgressResponseBody extends ResponseBody {
         }
 
         private void interruptConnect() {
-            listener.networkInterrupt(url);
+            listener.networkInterrupt(url, totalBytesRead);
             listener = null;
             ProgressManager.removeListener(url);
         }
 
         private void cancelRequest() {
-            listener.cancel(url);
+            listener.cancel(url, totalBytesRead);
             listener = null;
             ProgressManager.removeListener(url);
         }

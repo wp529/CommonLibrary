@@ -15,6 +15,7 @@ import com.wp.commonlibrary.rx.NetworkDefaultObserver;
 import com.wp.commonlibrary.rx.ObservableManager;
 import com.wp.commonlibrary.rx.ThreadTransformer;
 import com.wp.commonlibrary.utils.FileIOUtils;
+import com.wp.commonlibrary.utils.LogUtils;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -105,14 +106,14 @@ public class RetrofitNetworkService implements INetWorkService {
     public void download(IView view, DownloadFile downloadFile, FileCallBack callBack) {
         //监听进度
         ProgressManager.addListener(downloadFile.getUrl(), downloadFile.getListener());
-        Disposable disposable = downloadService.download(downloadFile.getUrl())
+        Disposable disposable = downloadService.download("bytes=" + downloadFile.getStart() + "-", downloadFile.getUrl())
                 .map(responseBody -> {
                     File file = downloadFile.getFile();
                     if (file == null) {
                         throw new IllegalArgumentException("下载文件不能为空");
                     }
 
-                    if (FileIOUtils.writeFileFromIS(file, responseBody.byteStream())) {
+                    if (FileIOUtils.writeFileFromIS(file, responseBody.byteStream(), true)) {
                         return file;
                     } else {
                         return null;
@@ -125,7 +126,7 @@ public class RetrofitNetworkService implements INetWorkService {
                     } else {
                         callBack.downloadSuccess(file);
                     }
-                });
+                }, Throwable::printStackTrace);
         DownloadObservableManager.getInstance().addObservable(downloadFile.getUrl(), disposable);
         ObservableManager.getInstance().addObservable(disposable);
     }

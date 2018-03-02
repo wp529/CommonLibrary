@@ -30,13 +30,13 @@ public class ChangeViewWithProgressListener extends MainThreadProgressListener {
     }
 
     @Override
-    public void cancel() {
-        event.cancel();
+    public void cancel(long downloaded) {
+        event.cancel(downloaded);
     }
 
     @Override
-    public void interrupt() {
-        event.interrupt();
+    public void interrupt(long downloaded) {
+        event.interrupt(downloaded);
     }
 
 }

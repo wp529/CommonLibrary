@@ -28,11 +28,15 @@ public interface IMainThreadProgressEvent {
 
     /**
      * 网络请求取消
+     *
+     * @param downloaded 已下载
      */
-    void cancel();
+    void cancel(long downloaded);
 
     /**
      * 网络连接中断
+     *
+     * @param downloaded 已下载
      */
-    void interrupt();
+    void interrupt(long downloaded);
 }

@@ -111,12 +111,12 @@ public class ProgressPhotoView extends PhotoView implements IViewProgressEvent {
     }
 
     @Override
-    public void cancel() {
+    public void cancel(long downloaded) {
 
     }
 
     @Override
-    public void interrupt() {
+    public void interrupt(long downloaded) {
 
     }
 }

@@ -13,6 +13,7 @@ import com.wp.commonlibrary.utils.LogUtils;
 
 public class TestTextView extends android.support.v7.widget.AppCompatTextView implements IViewProgressEvent {
     private String url;
+    private long downloaded;
 
     public TestTextView(Context context) {
         super(context);
@@ -30,10 +31,12 @@ public class TestTextView extends android.support.v7.widget.AppCompatTextView im
         DownloadObservableManager.getInstance().stopObserver(url);
     }
 
+
     @Override
     public void start(String url, long totalLength) {
         this.url = url;
         LogUtils.e("start ", url);
+        LogUtils.e("url:" + url + "\ntotalLength:" + totalLength);
     }
 
     @Override
@@ -48,14 +51,15 @@ public class TestTextView extends android.support.v7.widget.AppCompatTextView im
     }
 
     @Override
-    public void cancel() {
-        setText("");
-        LogUtils.e("cancel");
+    public void cancel(long downloaded) {
+        setText("cancel");
+        LogUtils.e("cancel", "" + downloaded);
+        this.downloaded = downloaded;
     }
 
     @Override
-    public void interrupt() {
+    public void interrupt(long downloaded) {
         setText("网络连接中断");
-        LogUtils.e("TestTextView", "interrupt");
+        LogUtils.e("interrupt", "" + downloaded);
     }
 }
