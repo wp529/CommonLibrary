@@ -7,5 +7,5 @@ package com.wp.commonlibrary.module;
 
 public class ModuleConfig {
     public static final String[] MODULES_LIST =
-            {"com.wp.sharelogin.ShareLoginApplication"};
+            {"com.wp.sharelogin.ShareLoginApplication", "com.wp.web.WebApplication"};
 }

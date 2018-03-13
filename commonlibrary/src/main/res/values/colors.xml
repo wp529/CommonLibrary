@@ -4,4 +4,8 @@
     <color name="common_library_dialog_negative">#999999</color>
     <color name="common_library_dialog_positive">#111111</color>
     <color name="common_library_transparent">#00000000</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

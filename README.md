@@ -12,6 +12,7 @@
 * 权限安全操作
 * 图片预览
 * 三方分享&登录
+* 网页加载
 
 ##### 每个功能组件都有默认实现，helper为入口，直接调用使用，使用接口暴露出服务，所以在更换底层框架时重新实现服务接口即可。
 
@@ -187,4 +188,9 @@ ThirdPartyLoginHelper.getDefault().login2QQ(this, new IThirtyPartyLoginListener(
 
             }
         });
+```
+
+* 网页加载(是个单独的组件,使用腾讯的TBS解决方案共享X5内核)
+```
+WebActivity.startLoadHTML(this, "https://www.baidu.com/");
 ```

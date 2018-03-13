@@ -5,8 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
+import android.os.Bundle;
 import android.support.v4.content.FileProvider;
 import android.view.View;
 
@@ -17,7 +16,6 @@ import com.wp.commonlibrary.dialog.DialogOperateAdapter;
 import com.wp.commonlibrary.image.DownloadImage;
 import com.wp.commonlibrary.image.ImageHelper;
 import com.wp.commonlibrary.image.preview.ImagesPreviewActivity;
-import com.wp.commonlibrary.network.netspeed.NetworkSpeed;
 import com.wp.commonlibrary.network.networktype.DefaultNetworkTypeCallBack;
 import com.wp.commonlibrary.network.DownloadFile;
 import com.wp.commonlibrary.network.progress.ChangeViewWithProgressListener;
@@ -35,6 +33,7 @@ import com.wp.commonlibrary.views.TestTextView;
 import com.wp.sharelogin.bean.ShareInfo;
 import com.wp.sharelogin.callback.IThirtyPartyShareListener;
 import com.wp.sharelogin.share.SharePanelActivity;
+import com.wp.web.WebActivity;
 
 import java.io.File;
 
@@ -136,10 +135,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void loadNetImage(View view) {
         tvExample.setVisibility(View.GONE);
         ivExample.setVisibility(View.VISIBLE);
-        String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999" +
-                "_10000&sec=1516793144571&di=01beb0d58d63c328051647c96c7d3742" +
-                "&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F5" +
-                "8619c927133fd015f1656ea505cef48c20089ba.jpg";
+        String url = "https://p3.pstatp.com/large/666c00065c746ccf3333";
         ImageHelper.getDefault().loadImage(this, new DownloadImage.Builder()
                 .path(url)
                 .targetView(ivExample)
@@ -207,5 +203,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         ImagesPreviewActivity.startImagesPreview(this, images, 0);
     }
 
+    //加载网页
+    public void web(View view) {
+        WebActivity.startLoadHTML(this, "https://www.baidu.com/");
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        LogUtils.e("onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+    }
 }

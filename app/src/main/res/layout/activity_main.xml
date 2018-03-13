@@ -56,6 +56,11 @@
                 android:layout_height="wrap_content"
                 android:onClick="share"
                 android:text="三方分享" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="web"
+                android:text="展示网页" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -41,4 +41,5 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     implementation project(':share&login')
+    implementation project(':web')
 }
