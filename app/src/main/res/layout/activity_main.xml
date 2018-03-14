@@ -62,6 +62,12 @@
                 android:onClick="web"
                 android:text="展示网页" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="banner"
+                android:text="展示Banner" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

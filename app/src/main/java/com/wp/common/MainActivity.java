@@ -208,9 +208,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         WebActivity.startLoadHTML(this, "https://www.baidu.com/");
     }
 
+    public void banner(View view) {
+        startActivity(new Intent(this, BannerDemoActivity.class));
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         LogUtils.e("onSaveInstanceState");
         super.onSaveInstanceState(outState);
     }
+
+
 }

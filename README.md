@@ -194,3 +194,17 @@ ThirdPartyLoginHelper.getDefault().login2QQ(this, new IThirtyPartyLoginListener(
 ```
 WebActivity.startLoadHTML(this, "https://www.baidu.com/");
 ```
+
+* 可无限轮询,响应点击事件的ViewPager
+```
+String[] images = new String[3];
+images[0] = "http://p9.pstatp.com/large/615c0002e579e79689d0";
+images[1] = "http://p3.pstatp.com/large/615e00012d933c0d545f";
+images[2] = "http://p1.pstatp.com/large/615c0002e578aee415e6";
+vp.setImageData(images, true);
+vp.setOnPageClickListener(index -> {
+       LogUtils.e("WP", "++" + index);
+   });
+   
+//需要在onDestroy()中调用vp.release()避免内存泄漏
+```
